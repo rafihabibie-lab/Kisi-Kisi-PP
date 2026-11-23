@@ -3,1183 +3,1743 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bahan Ajar Pendidikan Pancasila Kelas XI</title>
+<title>Bahan Ajar Interaktif — Pendidikan Pancasila Kelas XI</title>
 <style>
-  :root{
-    --merah:#b71c1c;
-    --merah-muda:#fdecea;
-    --emas:#c9a227;
-    --teks:#1f2328;
-    --abu:#6b7280;
-    --garis:#e5e7eb;
-    --bg:#f7f7f9;
-    --hijau:#0f766e;
-    --hijau-muda:#e6f4f1;
+:root{
+  --merah:#b71c1c;
+  --merah-dark:#8a1010;
+  --merah-light:#fdecea;
+  --emas:#c9a227;
+  --emas-light:#fdf6e3;
+  --teks:#1a1d21;
+  --teks-muted:#5a6572;
+  --bg:#fafafb;
+  --bg-card:#ffffff;
+  --bg-elev:#f3f4f6;
+  --border:#e4e6eb;
+  --hijau:#0d7d70;
+  --hijau-light:#e6f5f3;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.04);
+  --shadow-md:0 4px 16px rgba(0,0,0,.06);
+  --shadow-lg:0 10px 40px rgba(0,0,0,.08);
+  --radius:14px;
+  --radius-sm:8px;
+  --transition:.25s cubic-bezier(.4,0,.2,1);
+}
+[data-theme="dark"]{
+  --teks:#e8eaed;
+  --teks-muted:#9ba1a9;
+  --bg:#0f1115;
+  --bg-card:#181b21;
+  --bg-elev:#1f2329;
+  --border:#2a2f37;
+  --merah-light:#3a1616;
+  --emas-light:#332c15;
+  --hijau-light:#0f2a27;
+  --shadow-md:0 4px 16px rgba(0,0,0,.4);
+  --shadow-lg:0 10px 40px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{
+  font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;
+  background:var(--bg);color:var(--teks);
+  line-height:1.7;font-size:16px;
+  transition:background var(--transition),color var(--transition);
+}
+
+/* ===== PROGRESS BAR ===== */
+.progress-bar{
+  position:fixed;top:0;left:0;right:0;height:3px;z-index:1001;
+  background:transparent;pointer-events:none;
+}
+.progress-bar__fill{
+  height:100%;width:0%;
+  background:linear-gradient(90deg,var(--merah),var(--emas));
+  transition:width .1s linear;
+}
+
+/* ===== HEADER ===== */
+header.topnav{
+  position:sticky;top:0;z-index:1000;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  transition:background var(--transition);
+}
+[data-theme="dark"] header.topnav{background:rgba(15,17,21,.85)}
+.topnav__inner{
+  max-width:1280px;margin:0 auto;padding:12px 20px;
+  display:flex;align-items:center;gap:16px;
+}
+.brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.brand__icon{
+  width:36px;height:36px;border-radius:10px;
+  background:linear-gradient(135deg,var(--merah),var(--merah-dark));
+  display:grid;place-items:center;color:#fff;font-weight:800;font-size:15px;
+  box-shadow:var(--shadow-sm);
+}
+.brand__text{font-weight:700;font-size:15px;letter-spacing:-.2px;line-height:1.2}
+.brand__text small{display:block;font-weight:400;font-size:11px;color:var(--teks-muted);margin-top:2px}
+
+.search-wrap{flex:1;max-width:420px;position:relative}
+.search-wrap svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--teks-muted);pointer-events:none}
+.search-wrap input{
+  width:100%;padding:10px 14px 10px 40px;border:1px solid var(--border);
+  background:var(--bg-elev);color:var(--teks);
+  border-radius:10px;font-size:14px;font-family:inherit;
+  transition:all var(--transition);
+}
+.search-wrap input:focus{outline:none;border-color:var(--merah);background:var(--bg-card);box-shadow:0 0 0 3px rgba(183,28,28,.1)}
+
+.controls{display:flex;gap:8px;margin-left:auto}
+.icon-btn{
+  width:38px;height:38px;border-radius:10px;
+  background:var(--bg-elev);border:1px solid var(--border);
+  color:var(--teks);cursor:pointer;display:grid;place-items:center;
+  transition:all var(--transition);
+}
+.icon-btn:hover{background:var(--merah-light);color:var(--merah);border-color:var(--merah)}
+.icon-btn svg{width:18px;height:18px}
+
+/* ===== HERO ===== */
+.hero{
+  max-width:1280px;margin:0 auto;padding:56px 20px 40px;
+  text-align:center;
+}
+.hero__eyebrow{
+  display:inline-block;padding:5px 14px;border-radius:999px;
+  background:var(--merah-light);color:var(--merah);
+  font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  margin-bottom:18px;
+}
+.hero h1{
+  font-size:clamp(1.8rem,4vw,3rem);line-height:1.15;
+  letter-spacing:-1px;margin-bottom:16px;font-weight:800;
+}
+.hero h1 span{color:var(--merah)}
+.hero p{max-width:640px;margin:0 auto;color:var(--teks-muted);font-size:16px}
+.hero__stats{
+  display:flex;justify-content:center;gap:36px;margin-top:36px;flex-wrap:wrap;
+}
+.stat{text-align:center}
+.stat__num{font-size:26px;font-weight:800;color:var(--merah);letter-spacing:-1px}
+.stat__label{font-size:12px;color:var(--teks-muted);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+
+/* ===== FILTER TABS ===== */
+.filters{
+  max-width:1280px;margin:0 auto;padding:0 20px 24px;
+  display:flex;gap:8px;flex-wrap:wrap;justify-content:center;
+}
+.filter-btn{
+  padding:8px 18px;border-radius:999px;border:1px solid var(--border);
+  background:var(--bg-card);color:var(--teks-muted);cursor:pointer;
+  font-size:13px;font-weight:600;font-family:inherit;
+  transition:all var(--transition);
+}
+.filter-btn:hover{color:var(--merah);border-color:var(--merah)}
+.filter-btn.active{background:var(--merah);color:#fff;border-color:var(--merah)}
+
+/* ===== LAYOUT ===== */
+.layout{
+  max-width:1280px;margin:0 auto;padding:0 20px 80px;
+  display:grid;grid-template-columns:260px 1fr;gap:32px;
+  align-items:start;
+}
+
+/* ===== SIDEBAR TOC ===== */
+.toc{
+  position:sticky;top:80px;
+  max-height:calc(100vh - 100px);
+  overflow-y:auto;
+  padding-right:8px;
+}
+.toc::-webkit-scrollbar{width:4px}
+.toc::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+.toc__title{
+  font-size:11px;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;color:var(--teks-muted);
+  margin-bottom:14px;padding-left:12px;
+}
+.toc__unit{margin-bottom:20px}
+.toc__unit-label{
+  font-size:11px;font-weight:700;color:var(--merah);
+  padding:4px 12px;background:var(--merah-light);
+  border-radius:6px;display:inline-block;margin-bottom:8px;
+}
+.toc__list{list-style:none}
+.toc__list li{margin-bottom:2px}
+.toc__link{
+  display:block;padding:6px 12px;border-radius:8px;
+  color:var(--teks-muted);text-decoration:none;
+  font-size:13px;line-height:1.4;
+  border-left:2px solid transparent;
+  transition:all var(--transition);
+}
+.toc__link:hover{background:var(--bg-elev);color:var(--teks)}
+.toc__link.active{
+  background:var(--merah-light);color:var(--merah);
+  border-left-color:var(--merah);font-weight:600;
+}
+
+/* ===== MAIN CONTENT ===== */
+main{min-width:0}
+
+.unit-header{
+  margin:48px 0 24px;padding-top:8px;
+}
+.unit-header:first-child{margin-top:0}
+.unit-header__tag{
+  font-size:12px;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;color:var(--emas);
+  margin-bottom:8px;
+}
+.unit-header h2{
+  font-size:clamp(1.4rem,2.5vw,1.9rem);
+  font-weight:800;letter-spacing:-.5px;
+  padding-bottom:14px;border-bottom:2px solid var(--merah-light);
+}
+
+.topic{
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  margin-bottom:20px;
+  box-shadow:var(--shadow-sm);
+  transition:all var(--transition);
+  scroll-margin-top:90px;
+  overflow:hidden;
+}
+.topic:hover{box-shadow:var(--shadow-md);border-color:#d4d6dd}
+[data-theme="dark"] .topic:hover{border-color:#353b44}
+
+.topic__head{
+  padding:22px 26px;
+  cursor:pointer;
+  display:flex;align-items:flex-start;gap:16px;
+  transition:background var(--transition);
+  user-select:none;
+}
+.topic__head:hover{background:var(--bg-elev)}
+.topic__num{
+  flex-shrink:0;
+  width:40px;height:40px;border-radius:10px;
+  background:linear-gradient(135deg,var(--merah),var(--merah-dark));
+  color:#fff;font-weight:800;font-size:14px;
+  display:grid;place-items:center;
+  box-shadow:var(--shadow-sm);
+}
+.topic__title-wrap{flex:1;min-width:0}
+.topic__title{
+  font-size:17px;font-weight:700;letter-spacing:-.2px;
+  margin-bottom:6px;line-height:1.35;
+}
+.topic__meta{
+  display:flex;gap:10px;flex-wrap:wrap;font-size:11.5px;
+  color:var(--teks-muted);
+}
+.topic__meta span{
+  display:inline-flex;align-items:center;gap:4px;
+  padding:2px 8px;background:var(--bg-elev);
+  border-radius:6px;font-weight:500;
+}
+.topic__meta .level{background:var(--emas-light);color:#8a6d1a}
+[data-theme="dark"] .topic__meta .level{color:var(--emas)}
+.topic__toggle{
+  flex-shrink:0;width:28px;height:28px;border-radius:8px;
+  background:var(--bg-elev);display:grid;place-items:center;
+  transition:all var(--transition);
+}
+.topic__toggle svg{width:14px;height:14px;transition:transform var(--transition);color:var(--teks-muted)}
+.topic.open .topic__toggle svg{transform:rotate(180deg)}
+.topic.open .topic__toggle{background:var(--merah-light);color:var(--merah)}
+
+.topic__body{
+  max-height:0;overflow:hidden;
+  transition:max-height .4s cubic-bezier(.4,0,.2,1);
+}
+.topic.open .topic__body{max-height:6000px}
+.topic__inner{padding:0 26px 26px}
+
+.materi-section{margin-bottom:20px}
+.materi-section:last-child{margin-bottom:0}
+.materi-section__title{
+  display:flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:700;letter-spacing:.3px;
+  text-transform:uppercase;color:var(--merah);
+  margin-bottom:10px;
+}
+.materi-section__title::before{
+  content:'';width:3px;height:14px;border-radius:2px;
+  background:linear-gradient(180deg,var(--merah),var(--emas));
+}
+.materi-section p{margin-bottom:10px;color:var(--teks);font-size:14.5px}
+.materi-section p:last-child{margin-bottom:0}
+.materi-section strong{color:var(--teks);font-weight:700}
+.materi-section em{color:var(--merah-dark);font-style:italic}
+[data-theme="dark"] .materi-section em{color:#fca5a5}
+
+.materi-section ul, .materi-section ol{
+  margin:8px 0 10px 0;padding-left:22px;
+  font-size:14.5px;
+}
+.materi-section li{margin-bottom:6px}
+
+.callout{
+  padding:14px 18px;border-radius:10px;
+  margin:12px 0;font-size:13.5px;
+  border-left:3px solid;
+}
+.callout--info{background:var(--bg-elev);border-color:var(--hijau);color:var(--teks)}
+.callout--info .callout-label{color:var(--hijau)}
+.callout--hukum{background:var(--emas-light);border-color:var(--emas);color:var(--teks)}
+.callout--hukum .callout-label{color:#8a6d1a}
+[data-theme="dark"] .callout--hukum .callout-label{color:var(--emas)}
+.callout-label{
+  display:block;font-size:11px;font-weight:800;
+  letter-spacing:.8px;text-transform:uppercase;margin-bottom:6px;
+}
+.callout ul{margin:6px 0 0 0;padding-left:20px}
+.callout p{margin-bottom:4px}
+.callout p:last-child{margin-bottom:0}
+
+.kunci{
+  background:var(--hijau-light);
+  border:1px solid transparent;
+  border-radius:10px;padding:16px 18px;margin-top:16px;
+}
+[data-theme="dark"] .kunci{border-color:#1f524d}
+.kunci__label{
+  font-size:11px;font-weight:800;letter-spacing:.8px;
+  text-transform:uppercase;color:var(--hijau);margin-bottom:8px;
+  display:flex;align-items:center;gap:6px;
+}
+.kunci ul{margin:0;padding-left:20px;font-size:14px}
+.kunci li{margin-bottom:6px}
+.kunci li:last-child{margin-bottom:0}
+
+.empty{
+  text-align:center;padding:60px 20px;
+  color:var(--teks-muted);font-size:14px;
+}
+
+/* ===== BACK TO TOP ===== */
+.back-top{
+  position:fixed;bottom:24px;right:24px;z-index:999;
+  width:46px;height:46px;border-radius:50%;
+  background:var(--merah);color:#fff;border:none;
+  cursor:pointer;display:grid;place-items:center;
+  box-shadow:var(--shadow-lg);
+  opacity:0;pointer-events:none;transform:translateY(10px);
+  transition:all var(--transition);
+}
+.back-top.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+.back-top:hover{background:var(--merah-dark);transform:translateY(-2px)}
+.back-top svg{width:20px;height:20px}
+
+/* ===== FOOTER ===== */
+footer{
+  border-top:1px solid var(--border);
+  padding:32px 20px;text-align:center;
+  color:var(--teks-muted);font-size:13px;
+  background:var(--bg-card);
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:960px){
+  .layout{grid-template-columns:1fr;padding:0 16px 60px;gap:0}
+  .toc{
+    position:static;max-height:none;overflow:visible;
+    margin-bottom:24px;padding:16px;
+    background:var(--bg-card);border:1px solid var(--border);
+    border-radius:var(--radius);
+    display:none;
   }
-  *{box-sizing:border-box;}
-  body{
-    margin:0;
-    font-family:"Segoe UI",system-ui,-apple-system,sans-serif;
-    background:var(--bg);
-    color:var(--teks);
-    line-height:1.65;
-  }
-  /* ===== HEADER ===== */
-  header.hero{
-    background:linear-gradient(135deg,var(--merah) 0%,#7f1010 100%);
-    color:#fff;
-    padding:48px 24px 40px;
-    text-align:center;
-  }
-  header.hero h1{margin:0 0 8px;font-size:clamp(1.4rem,3.5vw,2.1rem);letter-spacing:.3px;}
-  header.hero p{margin:0;opacity:.9;font-size:.95rem;}
-  .strip{height:6px;background:linear-gradient(90deg,var(--merah) 0%,var(--emas) 100%);}
-  /* ===== LAYOUT ===== */
-  .wrap{max-width:960px;margin:0 auto;padding:32px 16px 80px;}
-  /* ===== NAV ===== */
-  nav.toc{
-    background:#fff;border:1px solid var(--garis);border-radius:14px;
-    padding:20px 22px;margin-bottom:36px;box-shadow:0 2px 10px rgba(0,0,0,.04);
-  }
-  nav.toc h2{margin:0 0 14px;font-size:1rem;text-transform:uppercase;letter-spacing:1px;color:var(--merah);}
-  nav.toc ol{margin:0;padding-left:20px;columns:2;column-gap:32px;}
-  nav.toc li{margin-bottom:8px;break-inside:avoid;font-size:.92rem;}
-  nav.toc a{color:var(--teks);text-decoration:none;border-bottom:1px dotted transparent;}
-  nav.toc a:hover{color:var(--merah);border-bottom-color:var(--merah);}
-  @media(max-width:640px){nav.toc ol{columns:1;}}
-  /* ===== CARD ===== */
-  section.card{
-    background:#fff;border:1px solid var(--garis);border-radius:16px;
-    margin-bottom:28px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.05);
-    scroll-margin-top:20px;
-  }
-  .card-head{
-    background:var(--merah-muda);
-    border-bottom:1px solid var(--garis);
-    padding:18px 24px;
-  }
-  .badge{
-    display:inline-block;background:var(--merah);color:#fff;
-    font-size:.72rem;font-weight:700;letter-spacing:.6px;
-    padding:3px 10px;border-radius:999px;text-transform:uppercase;
-  }
-  .card-head h2{margin:10px 0 6px;font-size:1.2rem;line-height:1.35;}
-  .meta{margin:0;font-size:.8rem;color:var(--abu);}
-  .meta strong{color:var(--teks);}
-  /* ===== BLOCK ===== */
-  .block{padding:22px 24px;border-bottom:1px solid var(--garis);}
-  .block:last-child{border-bottom:none;}
-  .block h3{
-    margin:0 0 12px;font-size:.95rem;letter-spacing:.5px;
-    text-transform:uppercase;display:flex;align-items:center;gap:8px;
-  }
-  .block h3 .dot{width:10px;height:10px;border-radius:50%;flex:none;}
-  .dot-pen{background:var(--merah);}
-  .dot-con{background:var(--emas);}
-  .dot-quiz{background:var(--hijau);}
-  .block p{margin:0 0 10px;}
-  .block ul,.block ol{margin:0 0 10px;padding-left:22px;}
-  .block li{margin-bottom:6px;}
-  /* ===== CONTOH BOX ===== */
-  .contoh-box{
-    background:#fffbef;border-left:4px solid var(--emas);
-    padding:14px 16px;border-radius:0 8px 8px 0;
-  }
-  .contoh-box .label{
-    font-size:.72rem;font-weight:700;letter-spacing:.8px;
-    text-transform:uppercase;color:#8a6d1a;display:block;margin-bottom:6px;
-  }
-  /* ===== QUIZ ===== */
-  .quiz{background:var(--hijau-muda);}
-  .quiz ol{margin:0 0 14px;padding-left:22px;}
-  .quiz li{margin-bottom:12px;}
-  .opsi{margin:6px 0 0;padding-left:0;list-style:none;font-size:.92rem;}
-  .opsi li{
-    margin:0 0 4px;padding:2px 8px;border-radius:6px;
-    background:rgba(255,255,255,.7);
-  }
-  details{
-    background:#fff;border:1px solid #cfe6e1;border-radius:8px;
-    padding:10px 14px;margin-top:6px;font-size:.9rem;
-  }
-  details summary{
-    cursor:pointer;font-weight:600;color:var(--hijau);
-    list-style:none;user-select:none;
-  }
-  details summary::-webkit-details-marker{display:none;}
-  details summary::before{content:"▸ ";}
-  details[open] summary::before{content:"▾ ";}
-  details p{margin:8px 0 0;color:#134e4a;}
-  details strong{color:var(--hijau);}
-  /* ===== FOOTER ===== */
-  footer{
-    text-align:center;padding:28px 16px;color:var(--abu);
-    font-size:.82rem;border-top:1px solid var(--garis);
-  }
+  .toc.mobile-open{display:block}
+  .toc__list{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+  .search-wrap{max-width:none}
+}
+@media(max-width:640px){
+  .topnav__inner{padding:10px 14px;gap:10px}
+  .brand__text small{display:none}
+  .brand__text{font-size:13px}
+  .search-wrap input{padding:8px 12px 8px 36px;font-size:13px}
+  .icon-btn{width:34px;height:34px}
+  .hero{padding:36px 16px 24px}
+  .hero__stats{gap:24px}
+  .stat__num{font-size:22px}
+  .filters{padding:0 16px 20px}
+  .topic__head{padding:16px 18px;gap:12px}
+  .topic__num{width:34px;height:34px;font-size:13px}
+  .topic__title{font-size:15px}
+  .topic__inner{padding:0 18px 20px}
+  .materi-section p, .materi-section ul, .materi-section ol{font-size:14px}
+  .toc__list{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
 
-<div class="strip"></div>
-<header class="hero">
-  <h1>Bahan Ajar Pendidikan Pancasila Kelas XI</h1>
-  <p>Pancasila · Ideologi · Konstitusi · Demokrasi &amp; HAM</p>
+<div class="progress-bar"><div class="progress-bar__fill" id="progressFill"></div></div>
+
+<header class="topnav">
+  <div class="topnav__inner">
+    <div class="brand">
+      <div class="brand__icon">P</div>
+      <div class="brand__text">Pendidikan Pancasila<small>Kelas XI · Persiapan SAS</small></div>
+    </div>
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="search" id="searchInput" placeholder="Cari materi, istilah, atau topik...">
+    </div>
+    <div class="controls">
+      <button class="icon-btn" id="tocToggle" title="Daftar Isi">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <button class="icon-btn" id="themeToggle" title="Mode Gelap">
+        <svg id="iconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        <svg id="iconSun" style="display:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+    </div>
+  </div>
 </header>
 
-<div class="wrap">
-
-  <!-- ================= DAFTAR ISI ================= -->
-  <nav class="toc">
-    <h2>Daftar Sub-Bab</h2>
-    <ol>
-      <li><a href="#topik-1">Kedudukan &amp; Fungsi Pancasila</a></li>
-      <li><a href="#topik-2">Ideologi Pancasila &amp; Tantangan Global</a></li>
-      <li><a href="#topik-3">Pancasila sebagai Ideologi Terbuka</a></li>
-      <li><a href="#topik-4">Batas Keterbukaan Ideologi</a></li>
-      <li><a href="#topik-5">Literasi Digital &amp; Etika Berinternet</a></li>
-      <li><a href="#topik-6">Nilai Pancasila dalam Kehidupan Majemuk</a></li>
-      <li><a href="#topik-7">Kesatuan Utuh Sila Pancasila</a></li>
-      <li><a href="#topik-8">Keterkaitan Antar-Sila dalam Kasus Nyata</a></li>
-      <li><a href="#topik-9">Hakikat Keadilan Sosial</a></li>
-      <li><a href="#topik-10">Pancasila sebagai Pendorong Perubahan</a></li>
-      <li><a href="#topik-11">Leitstar Dinamis &amp; Dinamika Global</a></li>
-      <li><a href="#topik-12">Integrasi Sila Pertama &amp; Kedua</a></li>
-      <li><a href="#topik-13">Aktualisasi Nilai di Era Modern</a></li>
-      <li><a href="#topik-14">Pancasila sebagai Weltanschauung</a></li>
-      <li><a href="#topik-15">Sistem Ketatanegaraan &amp; Konstitusi</a></li>
-      <li><a href="#topik-16">Periodisasi Konstitusi (UUDS 1950)</a></li>
-      <li><a href="#topik-17">Transformasi Konstitusi &amp; Amandemen</a></li>
-      <li><a href="#topik-18">Perilaku Demokratis &amp; Keterbukaan Informasi</a></li>
-    </ol>
-  </nav>
-
-  <!-- ================= TOPIK 1 ================= -->
-  <section class="card" id="topik-1">
-    <div class="card-head">
-      <span class="badge">Topik 1</span>
-      <h2>Kedudukan &amp; Fungsi Pancasila</h2>
-      <p class="meta">Level <strong>C3 (Aplikasi)</strong> · Nomor soal <strong>1</strong></p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-pen"></span>Penjelasan</h3>
-      <p>Pancasila memiliki lima kedudukan sekaligus:</p>
-      <ul>
-        <li><strong>Dasar negara</strong> — landasan penyelenggaraan negara.</li>
-        <li><strong>Ideologi nasional</strong> — sistem nilai yang dianut bangsa.</li>
-        <li><strong>Pandangan hidup</strong> — pedoman bertindak warga.</li>
-        <li><strong>Sumber hukum</strong> — semua peraturan tidak boleh bertentangan dengannya.</li>
-        <li><strong>Etika politik</strong> — tolok ukur moral penyelenggara negara.</li>
-      </ul>
-      <p>Sila Kelima mengandung nilai <strong>keadilan sosial</strong>, termasuk keadilan ekonomi. Karena itu, negara wajib melindungi pelaku ekonomi mikro/UMKM dari praktik monopoli dan persaingan usaha tidak sehat.</p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-con"></span>Contoh</h3>
-      <div class="contoh-box">
-        <span class="label">Kontekstual</span>
-        <ul>
-          <li>UU No. 5/1999 tentang Larangan Praktek Monopoli menjadi wujud perlindungan persaingan sehat.</li>
-          <li>UU No. 20/2008 tentang UMKM memberi payung hukum bagi usaha kecil.</li>
-          <li>Program KUR, penguatan koperasi, dan perlindungan pasar tradisional mencerminkan Sila Kelima.</li>
-          <li>Penindakan terhadap <em>predatory pricing</em> oleh pemain besar agar UMKM tidak tersingkir.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="block quiz">
-      <h3><span class="dot dot-quiz"></span>Mini Quiz</h3>
-      <ol>
-        <li>Regulasi yang mengatur larangan monopoli dan persaingan usaha tidak sehat adalah…
-          <ul class="opsi">
-            <li>a. UU No. 20/2008</li>
-            <li>b. UU No. 5/1999</li>
-            <li>c. UU No. 32/2009</li>
-          </ul>
-        </li>
-        <li>Alasan perlindungan UMKM paling tepat dikaitkan dengan sila ke…
-          <ul class="opsi">
-            <li>a. Ketiga (persatuan)</li>
-            <li>b. Keempat (musyawarah)</li>
-            <li>c. Kelima (keadilan sosial)</li>
-          </ul>
-        </li>
-      </ol>
-      <details>
-        <summary>Lihat kunci jawaban</summary>
-        <p><strong>1.</strong> b — UU No. 5/1999.<br>
-        <strong>2.</strong> c — Sila Kelima, karena keadilan ekonomi merupakan bagian keadilan sosial.</p>
-      </details>
-    </div>
-  </section>
-
-  <!-- ================= TOPIK 2 ================= -->
-  <section class="card" id="topik-2">
-    <div class="card-head">
-      <span class="badge">Topik 2</span>
-      <h2>Ideologi Pancasila &amp; Tantangan Global</h2>
-      <p class="meta">Level <strong>C3 (Aplikasi)</strong> · Nomor soal <strong>2</strong></p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-pen"></span>Penjelasan</h3>
-      <p>Tantangan global terhadap ideologi Pancasila antara lain radikalisme, disinformasi, ujaran kebencian, dan algoritma media sosial yang memperkuat <em>echo chamber</em>.</p>
-      <p>Sikap pelajar yang kritis dan konstruktif berarti:</p>
-      <ul>
-        <li><strong>Verifikasi</strong> sumber sebelum mempercayai informasi.</li>
-        <li><strong>Tidak menyebar</strong> hoaks dan konten provokatif.</li>
-        <li><strong>Melaporkan</strong> akun penyebar ideologi anti-Pancasila ke platform.</li>
-        <li><strong>Berdialog damai</strong>, bukan menyerang secara personal.</li>
-      </ul>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-con"></span>Contoh</h3>
-      <div class="contoh-box">
-        <span class="label">Kontekstual</span>
-        <ul>
-          <li>Menemukan akun yang menyerukan penggantian ideologi negara → cukup laporkan, tidak perlu ikut menyebarkan tangkapan layar.</li>
-          <li>Membuat konten edukasi singkat tentang bahaya radikalisme di media sosial.</li>
-          <li>Mengajak diskusi kelas dengan data dan argumen, bukan dengan hinaan.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="block quiz">
-      <h3><span class="dot dot-quiz"></span>Mini Quiz</h3>
-      <ol>
-        <li>Tindakan paling tepat saat menemukan akun penyebar ideologi anti-Pancasila adalah…
-          <ul class="opsi">
-            <li>a. Membagikan ke banyak grup agar ramai</li>
-            <li>b. Melaporkan akun dan tidak menyebarkan kontennya</li>
-            <li>c. Membalas dengan ujaran kebencian</li>
-          </ul>
-        </li>
-        <li>Sikap kritis yang konstruktif berarti…
-          <ul class="opsi">
-            <li>a. Menolak semua informasi asing</li>
-            <li>b. Menilai informasi dengan data dan nilai Pancasila</li>
-            <li>c. Diam saja terhadap provokasi</li>
-          </ul>
-        </li>
-      </ol>
-      <details>
-        <summary>Lihat kunci jawaban</summary>
-        <p><strong>1.</strong> b — Melaporkan dan menahan diri agar tidak memperluas jangkauan konten.<br>
-        <strong>2.</strong> b — Kritis berarti menilai berdasarkan bukti dan nilai, bukan menolak buta.</p>
-      </details>
-    </div>
-  </section>
-
-  <!-- ================= TOPIK 3 ================= -->
-  <section class="card" id="topik-3">
-    <div class="card-head">
-      <span class="badge">Topik 3</span>
-      <h2>Pancasila sebagai Ideologi Terbuka</h2>
-      <p class="meta">Level <strong>C4 (Analisis)</strong> · Nomor soal <strong>3, 16</strong></p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-pen"></span>Penjelasan</h3>
-      <p>Ideologi terbuka memiliki <strong>nilai dasar yang tetap</strong>, tetapi penjabarannya bersifat dinamis. Tiga dimensi ideologi terbuka:</p>
-      <ul>
-        <li><strong>Idealitas</strong> — nilai dasar yang menjadi cita-cita.</li>
-        <li><strong>Normatif</strong> — nilai yang dijabarkan dalam aturan.</li>
-        <li><strong>Realitas</strong> — praktik nyata dalam kehidupan.</li>
-      </ul>
-      <p>Strategi menyaring budaya asing: <strong>selektif, kritis, adaptif,</strong> dan <strong>tidak isolasionis</strong> — menerima yang sesuai, menolak yang bertentangan.</p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-con"></span>Contoh</h3>
-      <div class="contoh-box">
-        <span class="label">Kontekstual</span>
-        <ul>
-          <li>Mengadopsi teknologi digital untuk mempromosikan budaya lokal ke dunia.</li>
-          <li>Menyaring konten budaya asing yang bertentangan dengan kesopanan dan toleransi.</li>
-          <li>Menerima demokrasi digital, tetapi menolak politik identitas yang memecah belah.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="block quiz">
-      <h3><span class="dot dot-quiz"></span>Mini Quiz</h3>
-      <ol>
-        <li>Yang <em>bukan</em> termasuk dimensi ideologi terbuka adalah…
-          <ul class="opsi">
-            <li>a. Idealitas</li>
-            <li>b. Normatif</li>
-            <li>c. Dogmatis</li>
-          </ul>
-        </li>
-        <li>Strategi paling tepat menghadapi budaya asing adalah…
-          <ul class="opsi">
-            <li>a. Menolak seluruhnya</li>
-            <li>b. Menerima seluruhnya</li>
-            <li>c. Menyaring secara selektif dan kritis</li>
-          </ul>
-        </li>
-      </ol>
-      <details>
-        <summary>Lihat kunci jawaban</summary>
-        <p><strong>1.</strong> c — Dimensi ideologi terbuka adalah idealitas, normatif, dan realitas.<br>
-        <strong>2.</strong> c — Selektif dan kritis tanpa menutup diri.</p>
-      </details>
-    </div>
-  </section>
-
-  <!-- ================= TOPIK 4 ================= -->
-  <section class="card" id="topik-4">
-    <div class="card-head">
-      <span class="badge">Topik 4</span>
-      <h2>Batas Keterbukaan Ideologi</h2>
-      <p class="meta">Level <strong>C2 (Pemahaman)</strong> · Nomor soal <strong>4</strong></p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-pen"></span>Penjelasan</h3>
-      <p>Keterbukaan ideologi tetap memiliki batas agar eksistensi Pancasila tidak terancam. Lima prinsip batas keterbukaan:</p>
-      <ol>
-        <li>Tidak mengubah nilai dasar Pancasila.</li>
-        <li>Tidak bertentangan dengan Pembukaan UUD 1945.</li>
-        <li>Tidak mengganti ideologi negara.</li>
-        <li>Tidak melanggar HAM.</li>
-        <li>Tidak memecah NKRI.</li>
-      </ol>
-      <p>Nilai baru boleh diterima jika memperkuat persatuan, keadilan, dan kemanusiaan.</p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-con"></span>Contoh</h3>
-      <div class="contoh-box">
-        <span class="label">Kontekstual</span>
-        <ul>
-          <li>TAP MPRS No. XXV/1966 menjadi dasar pelarangan ideologi komunis.</li>
-          <li>UUD 1945 Pasal 28J ayat (2) membatasi pelaksanaan HAM agar tidak melanggar hak orang lain.</li>
-          <li>Nilai kebebasan dari liberalisme ekstrem ditolak karena mengancam nilai gotong royong.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="block quiz">
-      <h3><span class="dot dot-quiz"></span>Mini Quiz</h3>
-      <ol>
-        <li>Berikut yang <em>bukan</em> prinsip batas keterbukaan ideologi adalah…
-          <ul class="opsi">
-            <li>a. Tidak mengubah nilai dasar</li>
-            <li>b. Boleh mengganti ideologi negara jika mayoritas setuju</li>
-            <li>c. Tidak memecah NKRI</li>
-          </ul>
-        </li>
-        <li>Pasal 28J ayat (2) UUD 1945 mengatur…
-          <ul class="opsi">
-            <li>a. Pembatasan HAM oleh undang-undang</li>
-            <li>b. Kebebasan tanpa batas</li>
-            <li>c. Pembentukan Mahkamah Konstitusi</li>
-          </ul>
-        </li>
-      </ol>
-      <details>
-        <summary>Lihat kunci jawaban</summary>
-        <p><strong>1.</strong> b — Mengganti ideologi justru melanggar batas keterbukaan.<br>
-        <strong>2.</strong> a — Pembatasan HAM dilakukan dengan undang-undang.</p>
-      </details>
-    </div>
-  </section>
-
-  <!-- ================= TOPIK 5 ================= -->
-  <section class="card" id="topik-5">
-    <div class="card-head">
-      <span class="badge">Topik 5</span>
-      <h2>Literasi Digital &amp; Etika Berinternet</h2>
-      <p class="meta">Level <strong>C3 (Aplikasi)</strong> · Nomor soal <strong>5, 20</strong></p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-pen"></span>Penjelasan</h3>
-      <p><strong>Hoaks</strong> adalah informasi bohong yang sengaja disebarkan. <strong>Provokasi SARA</strong> adalah ujaran yang memancing kebencian atas dasar suku, agama, ras, dan antargolongan.</p>
-      <p>Prinsip literasi digital:</p>
-      <ul>
-        <li><strong>Saring sebelum sharing</strong> — periksa sebelum meneruskan.</li>
-        <li><strong>Cek fakta</strong> ke sumber resmi.</li>
-        <li><strong>Laporkan</strong> konten berbahaya.</li>
-        <li><strong>Santun</strong> dan menghormati privasi.</li>
-      </ul>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-con"></span>Contoh</h3>
-      <div class="contoh-box">
-        <span class="label">Kontekstual</span>
-        <ul>
-          <li>Tidak meneruskan pesan berantai yang tidak jelas sumbernya.</li>
-          <li>Menggunakan kanal cek fakta seperti Mafindo dan TurnBackHoax.</li>
-          <li>Melaporkan konten SARA ke fitur pelaporan platform.</li>
-          <li>Untuk kasus ringan, dapat ditempuh <em>restorative justice</em>.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="block quiz">
-      <h3><span class="dot dot-quiz"></span>Mini Quiz</h3>
-      <ol>
-        <li>Pasal UU ITE yang mengatur ujaran kebencian berbasis SARA adalah…
-          <ul class="opsi">
-            <li>a. Pasal 27 ayat (1)</li>
-            <li>b. Pasal 28 ayat (2)</li>
-            <li>c. Pasal 30 ayat (1)</li>
-          </ul>
-        </li>
-        <li>Langkah pertama saat menerima pesan berantai yang mencurigakan adalah…
-          <ul class="opsi">
-            <li>a. Langsung meneruskan</li>
-            <li>b. Memeriksa sumber dan kebenarannya</li>
-            <li>c. Menambahkan komentar provokatif</li>
-          </ul>
-        </li>
-      </ol>
-      <details>
-        <summary>Lihat kunci jawaban</summary>
-        <p><strong>1.</strong> b — Pasal 28 ayat (2) UU ITE.<br>
-        <strong>2.</strong> b — Verifikasi sebelum menyebarkan.</p>
-      </details>
-    </div>
-  </section>
-
-  <!-- ================= TOPIK 6 ================= -->
-  <section class="card" id="topik-6">
-    <div class="card-head">
-      <span class="badge">Topik 6</span>
-      <h2>Nilai Pancasila dalam Kehidupan Majemuk</h2>
-      <p class="meta">Level <strong>C4 (Analisis)</strong> · Nomor soal <strong>6</strong></p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-pen"></span>Penjelasan</h3>
-      <p>Toleransi beragama berarti menghormati perbedaan keyakinan tanpa mencampuradukkan ajaran. Negara menjamin kebebasan beragama dan beribadah bagi seluruh warga, termasuk kelompok minoritas.</p>
-      <p><strong>Moderasi beragama</strong> menghindari sikap ekstrem: tidak memaksakan keyakinan, tetapi juga tidak mengabaikan ajaran sendiri.</p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-con"></span>Contoh</h3>
-      <div class="contoh-box">
-        <span class="label">Kontekstual</span>
-        <ul>
-          <li>Dialog lintas iman di sekolah untuk membangun saling pengertian.</li>
-          <li>Pemenuhan hak pendirian rumah ibadah sesuai regulasi bersama (PBM).</li>
-          <li>Menjenguk teman berbeda agama yang sakit sebagai wujud kemanusiaan.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="block quiz">
-      <h3><span class="dot dot-quiz"></span>Mini Quiz</h3>
-      <ol>
-        <li>Jaminan kebebasan beragama terdapat dalam UUD 1945…
-          <ul class="opsi">
-            <li>a. Pasal 28E ayat (1) dan Pasal 29 ayat (2)</li>
-            <li>b. Pasal 31 ayat (1)</li>
-            <li>c. Pasal 33 ayat (4)</li>
-          </ul>
-        </li>
-        <li>Moderasi beragama berarti…
-          <ul class="opsi">
-            <li>a. Mencampur semua ajaran</li>
-            <li>b. Menghindari sikap ekstrem dan memaksakan keyakinan</li>
-            <li>c. Menolak semua perbedaan</li>
-          </ul>
-        </li>
-      </ol>
-      <details>
-        <summary>Lihat kunci jawaban</summary>
-        <p><strong>1.</strong> a — Pasal 28E ayat (1) dan Pasal 29 ayat (2).<br>
-        <strong>2.</strong> b — Moderasi berarti seimbang dan tidak ekstrem.</p>
-      </details>
-    </div>
-  </section>
-
-  <!-- ================= TOPIK 7 ================= -->
-  <section class="card" id="topik-7">
-    <div class="card-head">
-      <span class="badge">Topik 7</span>
-      <h2>Kesatuan Utuh Sila Pancasila</h2>
-      <p class="meta">Level <strong>C2 (Pemahaman)</strong> · Nomor soal <strong>7, 15, 19</strong></p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-pen"></span>Penjelasan</h3>
-      <p>Pancasila bersifat <strong>majemuk tunggal</strong>: terdiri atas lima sila, tetapi merupakan satu kesatuan organis. Sila-sila <strong>saling menjiwai dan meliputi</strong>; tidak ada sila yang berdiri sendiri.</p>
-      <ul>
-        <li>Sila 1 menjiwai Sila 2 dalam menghormati martabat manusia.</li>
-        <li>Sila 3 melandasi persatuan.</li>
-        <li>Sila 4 melandasi musyawarah.</li>
-        <li>Sila 5 melandasi keadilan.</li>
-      </ul>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-con"></span>Contoh</h3>
-      <div class="contoh-box">
-        <span class="label">Kontekstual</span>
-        <ul>
-          <li>Musyawarah kelas (Sila 4) yang menghormati pendapat minoritas (Sila 2) dan mengutamakan kepentingan bersama (Sila 3).</li>
-          <li>Gotong royong membersihkan lingkungan sebagai wujud Sila 3 sekaligus Sila 5.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="block quiz">
-      <h3><span class="dot dot-quiz"></span>Mini Quiz</h3>
-      <ol>
-        <li>Pancasila disebut majemuk tunggal karena…
-          <ul class="opsi">
-            <li>a. Lima sila berdiri sendiri</li>
-            <li>b. Lima sila merupakan satu kesatuan organis</li>
-            <li>c. Hanya satu sila yang berlaku</li>
-          </ul>
-        </li>
-        <li>Contoh penerapan Sila 2 dan 3 secara bersamaan adalah…
-          <ul class="opsi">
-            <li>a. Musyawarah yang menghormati pendapat minoritas</li>
-            <li>b. Menolak pendapat orang lain</li>
-            <li>c. Memaksakan kehendak kelompok</li>
-          </ul>
-        </li>
-      </ol>
-      <details>
-        <summary>Lihat kunci jawaban</summary>
-        <p><strong>1.</strong> b — Satu kesatuan organis yang saling menjiwai.<br>
-        <strong>2.</strong> a — Menghormati pendapat (Sila 2 &amp; 4) dan mengutamakan kebersamaan (Sila 3).</p>
-      </details>
-    </div>
-  </section>
-
-  <!-- ================= TOPIK 8 ================= -->
-  <section class="card" id="topik-8">
-    <div class="card-head">
-      <span class="badge">Topik 8</span>
-      <h2>Keterkaitan Antar-Sila dalam Kasus Nyata</h2>
-      <p class="meta">Level <strong>C3 (Aplikasi)</strong> · Nomor soal <strong>8</strong></p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-pen"></span>Penjelasan</h3>
-      <p>Pencemaran limbah bukan sekadar pelanggaran lingkungan, tetapi juga pelanggaran nilai Pancasila:</p>
-      <ul>
-        <li><strong>Sila Kedua</strong> — merendahkan martabat dan kesehatan warga.</li>
-        <li><strong>Sila Kelima</strong> — menciptakan ketidakadilan bagi masyarakat sekitar.</li>
-      </ul>
-      <p>Perusahaan memiliki tanggung jawab sosial dan lingkungan; negara wajib menegakkan hukum.</p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-con"></span>Contoh</h3>
-      <div class="contoh-box">
-        <span class="label">Kontekstual</span>
-        <ul>
-          <li>Kasus pencemaran Sungai Citarum oleh limbah industri.</li>
-          <li>Kewajiban AMDAL sebelum kegiatan usaha berdampak besar.</li>
-          <li>UUD 1945 Pasal 28H ayat (1) menjamin lingkungan hidup yang sehat.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="block quiz">
-      <h3><span class="dot dot-quiz"></span>Mini Quiz</h3>
-      <ol>
-        <li>Undang-undang yang mengatur perlindungan dan pengelolaan lingkungan hidup adalah…
-          <ul class="opsi">
-            <li>a. UU No. 32/2009</li>
-            <li>b. UU No. 5/1999</li>
-            <li>c. UU No. 20/2008</li>
-          </ul>
-        </li>
-        <li>Pencemaran limbah paling tepat dikaitkan dengan sila…
-          <ul class="opsi">
-            <li>a. Kedua dan Kelima</li>
-            <li>b. Pertama dan Keempat</li>
-            <li>c. Ketiga saja</li>
-          </ul>
-        </li>
-      </ol>
-      <details>
-        <summary>Lihat kunci jawaban</summary>
-        <p><strong>1.</strong> a — UU No. 32/2009.<br>
-        <strong>2.</strong> a — Kemanusiaan (Sila 2) dan keadilan (Sila 5).</p>
-      </details>
-    </div>
-  </section>
-
-  <!-- ================= TOPIK 9 ================= -->
-  <section class="card" id="topik-9">
-    <div class="card-head">
-      <span class="badge">Topik 9</span>
-      <h2>Hakikat Keadilan Sosial</h2>
-      <p class="meta">Level <strong>C2 (Pemahaman)</strong> · Nomor soal <strong>9</strong></p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-pen"></span>Penjelasan</h3>
-      <p>Keadilan sosial mencakup beberapa bentuk:</p>
-      <ul>
-        <li><strong>Distributif</strong> — pembagian sumber daya secara adil.</li>
-        <li><strong>Komutatif</strong> — keadilan dalam pertukaran.</li>
-        <li><strong>Legal</strong> — keadilan dalam hukum.</li>
-        <li><strong>Sosial</strong> — kesetaraan kesempatan bagi seluruh warga.</li>
-      </ul>
-      <p>Kesetaraan kesempatan berarti setiap warga memiliki peluang yang adil untuk berkembang.</p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-con"></span>Contoh</h3>
-      <div class="contoh-box">
-        <span class="label">Kontekstual</span>
-        <ul>
-          <li>Beasiswa bagi siswa berprestasi dari keluarga kurang mampu.</li>
-          <li>Bantuan Langsung Tunai (BLT) dan subsidi tepat sasaran.</li>
-          <li>Pembangunan infrastruktur desa dan pendidikan inklusif.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="block quiz">
-      <h3><span class="dot dot-quiz"></span>Mini Quiz</h3>
-      <ol>
-        <li>Keadilan yang berkaitan dengan pembagian sumber daya disebut…
-          <ul class="opsi">
-            <li>a. Komutatif</li>
-            <li>b. Distributif</li>
-            <li>c. Legal</li>
-          </ul>
-        </li>
-        <li>Contoh kebijakan berkeadilan sosial adalah…
-          <ul class="opsi">
-            <li>a. Beasiswa bagi siswa kurang mampu</li>
-            <li>b. Monopoli pasar oleh pengusaha besar</li>
-            <li>c. Diskriminasi dalam layanan publik</li>
-          </ul>
-        </li>
-      </ol>
-      <details>
-        <summary>Lihat kunci jawaban</summary>
-        <p><strong>1.</strong> b — Distributif.<br>
-        <strong>2.</strong> a — Beasiswa merupakan upaya pemerataan kesempatan.</p>
-      </details>
-    </div>
-  </section>
-
-  <!-- ================= TOPIK 10 ================= -->
-  <section class="card" id="topik-10">
-    <div class="card-head">
-      <span class="badge">Topik 10</span>
-      <h2>Pancasila sebagai Pendorong Perubahan</h2>
-      <p class="meta">Level <strong>C4 (Analisis)</strong> · Nomor soal <strong>10, 11, 12</strong></p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-pen"></span>Penjelasan</h3>
-      <p>Pancasila bersifat <strong>transformatif</strong>, bukan hanya konservatif. Nilai gotong royong dan musyawarah mendorong perubahan sosial yang damai dan konstitusional.</p>
-      <p>Pancasila menjadi landasan:</p>
-      <ul>
-        <li>gerakan sosial,</li>
-        <li>perlindungan kaum marginal,</li>
-        <li>kelestarian lingkungan.</li>
-      </ul>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-con"></span>Contoh</h3>
-      <div class="contoh-box">
-        <span class="label">Kontekstual</span>
-        <ul>
-          <li>Advokasi hak buruh dan pekerja informal.</li>
-          <li>Pendampingan komunitas difabel agar aksesibilitas terpenuhi.</li>
-          <li>Gerakan masyarakat adat menjaga hutan dan lingkungan.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="block quiz">
-      <h3><span class="dot dot-quiz"></span>Mini Quiz</h3>
-      <ol>
-        <li>Perubahan sosial berbasis Pancasila harus bersifat…
-          <ul class="opsi">
-            <li>a. Damai dan konstitusional</li>
-            <li>b. Radikal dan anarkis</li>
-            <li>c. Tertutup dan eksklusif</li>
-          </ul>
-        </li>
-        <li>Contoh peran Pancasila dalam perubahan sosial adalah…
-          <ul class="opsi">
-            <li>a. Advokasi hak difabel dan buruh</li>
-            <li>b. Menolak semua bentuk kritik</li>
-            <li>c. Membiarkan ketimpangan</li>
-          </ul>
-        </li>
-      </ol>
-      <details>
-        <summary>Lihat kunci jawaban</summary>
-        <p><strong>1.</strong> a — Damai dan sesuai konstitusi.<br>
-        <strong>2.</strong> a — Advokasi kelompok marginal mencerminkan nilai kemanusiaan dan keadilan.</p>
-      </details>
-    </div>
-  </section>
-
-  <!-- ================= TOPIK 11 ================= -->
-  <section class="card" id="topik-11">
-    <div class="card-head">
-      <span class="badge">Topik 11</span>
-      <h2>Leitstar Dinamis &amp; Dinamika Global</h2>
-      <p class="meta">Level <strong>C4 (Analisis)</strong> · Nomor soal <strong>13</strong></p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-pen"></span>Penjelasan</h3>
-      <p><em>Leitstar dinamis</em> berarti Pancasila menjadi <strong>bintang penuntun</strong> yang dinamis: nilai dasarnya tetap, tetapi implementasinya menyesuaikan perkembangan zaman.</p>
-      <p>Tantangan kontemporer: kecerdasan artifisial (AI), digitalisasi, krisis iklim, dan pelindungan data pribadi.</p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-con"></span>Contoh</h3>
-      <div class="contoh-box">
-        <span class="label">Kontekstual</span>
-        <ul>
-          <li>UU No. 27/2022 tentang Pelindungan Data Pribadi sebagai wujud keadilan di ruang digital.</li>
-          <li>Etika penggunaan AI yang menghormati martabat manusia (Sila 2).</li>
-          <li>Kebijakan ekonomi digital yang inklusif (Sila 5).</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="block quiz">
-      <h3><span class="dot dot-quiz"></span>Mini Quiz</h3>
-      <ol>
-        <li>Leitstar dinamis berarti Pancasila…
-          <ul class="opsi">
-            <li>a. Tidak berubah sama sekali</li>
-            <li>b. Nilai dasar tetap, implementasi menyesuaikan zaman</li>
-            <li>c. Dapat diganti sewaktu-waktu</li>
-          </ul>
-        </li>
-        <li>Undang-undang yang mengatur pelindungan data pribadi adalah…
-          <ul class="opsi">
-            <li>a. UU No. 27/2022</li>
-            <li>b. UU No. 32/2009</li>
-            <li>c. UU No. 20/2008</li>
-          </ul>
-        </li>
-      </ol>
-      <details>
-        <summary>Lihat kunci jawaban</summary>
-        <p><strong>1.</strong> b — Nilai dasar tetap, penjabaran dinamis.<br>
-        <strong>2.</strong> a — UU No. 27/2022.</p>
-      </details>
-    </div>
-  </section>
-
-  <!-- ================= TOPIK 12 ================= -->
-  <section class="card" id="topik-12">
-    <div class="card-head">
-      <span class="badge">Topik 12</span>
-      <h2>Integrasi Sila Pertama &amp; Kedua</h2>
-      <p class="meta">Level <strong>C2 (Pemahaman)</strong> · Nomor soal <strong>14</strong></p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-pen"></span>Penjelasan</h3>
-      <p>Keimanan sejati tidak boleh merendahkan martabat manusia. Sila Pertama menjiwai Sila Kedua melalui kasih sayang, toleransi, dan penghormatan terhadap perbedaan keyakinan.</p>
-      <p>Dengan demikian, religiusitas dan penghormatan HAM berjalan seiring, bukan bertentangan.</p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-con"></span>Contoh</h3>
-      <div class="contoh-box">
-        <span class="label">Kontekstual</span>
-        <ul>
-          <li>Aksi kemanusiaan lintas agama saat bencana alam.</li>
-          <li>Menghormati teman yang berpuasa dan yang tidak berpuasa.</li>
-          <li>Tidak memaksakan keyakinan kepada orang lain.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="block quiz">
-      <h3><span class="dot dot-quiz"></span>Mini Quiz</h3>
-      <ol>
-        <li>Integrasi Sila 1 dan 2 berarti…
-          <ul class="opsi">
-            <li>a. Keimanan boleh merendahkan orang lain</li>
-            <li>b. Keimanan sejalan dengan penghormatan martabat manusia</li>
-            <li>c. Agama tidak perlu dipedulikan</li>
-          </ul>
-        </li>
-        <li>Contoh nyata integrasi Sila 1 dan 2 adalah…
-          <ul class="opsi">
-            <li>a. Aksi kemanusiaan lintas agama</li>
-            <li>b. Memaksakan keyakinan</li>
-            <li>c. Menolak bantuan dari pemeluk agama lain</li>
-          </ul>
-        </li>
-      </ol>
-      <details>
-        <summary>Lihat kunci jawaban</summary>
-        <p><strong>1.</strong> b — Iman sejati menghormati manusia.<br>
-        <strong>2.</strong> a — Solidaritas lintas agama mencerminkan keduanya.</p>
-      </details>
-    </div>
-  </section>
-
-  <!-- ================= TOPIK 13 ================= -->
-  <section class="card" id="topik-13">
-    <div class="card-head">
-      <span class="badge">Topik 13</span>
-      <h2>Aktualisasi Nilai di Era Modern</h2>
-      <p class="meta">Level <strong>C3 (Aplikasi)</strong> · Nomor soal <strong>17</strong></p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-pen"></span>Penjelasan</h3>
-      <p><strong>Nasionalisme digital positif</strong> adalah ekspresi cinta tanah air di ruang digital yang produktif dan etis, bukan sekadar simbol atau provokasi.</p>
-      <p>Bentuknya antara lain: cinta produk lokal, promosi budaya, literasi digital, jurnalisme warga, dan kampanye damai.</p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-con"></span>Contoh</h3>
-      <div class="contoh-box">
-        <span class="label">Kontekstual</span>
-        <ul>
-          <li>Membuat konten edukasi tentang budaya daerah.</li>
-          <li><em>Crowdfunding</em> untuk korban bencana.</li>
-          <li>Kampanye anti-hoaks di media sosial sekolah.</li>
-          <li>Mempromosikan produk UMKM lokal.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="block quiz">
-      <h3><span class="dot dot-quiz"></span>Mini Quiz</h3>
-      <ol>
-        <li>Contoh nasionalisme digital positif adalah…
-          <ul class="opsi">
-            <li>a. Menyebar hoaks tentang negara lain</li>
-            <li>b. Membuat konten edukasi budaya lokal</li>
-            <li>c. Menyerang akun berbeda pendapat</li>
-          </ul>
-        </li>
-        <li>Nasionalisme digital positif bersifat…
-          <ul class="opsi">
-            <li>a. Produktif dan etis</li>
-            <li>b. Provokatif</li>
-            <li>c. Menutup diri dari dunia global</li>
-          </ul>
-        </li>
-      </ol>
-      <details>
-        <summary>Lihat kunci jawaban</summary>
-        <p><strong>1.</strong> b — Konten edukasi budaya.<br>
-        <strong>2.</strong> a — Produktif, etis, dan terbuka.</p>
-      </details>
-    </div>
-  </section>
-
-  <!-- ================= TOPIK 14 ================= -->
-  <section class="card" id="topik-14">
-    <div class="card-head">
-      <span class="badge">Topik 14</span>
-      <h2>Pancasila sebagai Weltanschauung</h2>
-      <p class="meta">Level <strong>C2 (Pemahaman)</strong> · Nomor soal <strong>18</strong></p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-pen"></span>Penjelasan</h3>
-      <p><em>Weltanschauung</em> berarti <strong>pandangan hidup</strong>. Pancasila menjadi sumber nilai, pedoman bertindak, dan penuntun arah bernegara.</p>
-      <p>Pancasila bukan hanya simbol, tetapi diwujudkan dalam kebijakan publik dan perilaku warga sehari-hari.</p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-con"></span>Contoh</h3>
-      <div class="contoh-box">
-        <span class="label">Kontekstual</span>
-        <ul>
-          <li>Pembangunan berkelanjutan yang memperhatikan lingkungan.</li>
-          <li>Pelayanan publik yang adil tanpa diskriminasi.</li>
-          <li>Kebijakan inklusif bagi kelompok rentan.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="block quiz">
-      <h3><span class="dot dot-quiz"></span>Mini Quiz</h3>
-      <ol>
-        <li>Weltanschauung berarti…
-          <ul class="opsi">
-            <li>a. Pandangan hidup</li>
-            <li>b. Dasar hukum</li>
-            <li>c. Sistem pemerintahan</li>
-          </ul>
-        </li>
-        <li>Wujud Pancasila sebagai pandangan hidup adalah…
-          <ul class="opsi">
-            <li>a. Dijadikan simbol upacara saja</li>
-            <li>b. Diterapkan dalam kebijakan dan perilaku sehari-hari</li>
-            <li>c. Disimpan dalam dokumen resmi</li>
-          </ul>
-        </li>
-      </ol>
-      <details>
-        <summary>Lihat kunci jawaban</summary>
-        <p><strong>1.</strong> a — Pandangan hidup.<br>
-        <strong>2.</strong> b — Diwujudkan dalam praktik nyata.</p>
-      </details>
-    </div>
-  </section>
-
-  <!-- ================= TOPIK 15 ================= -->
-  <section class="card" id="topik-15">
-    <div class="card-head">
-      <span class="badge">Topik 15</span>
-      <h2>Sistem Ketatanegaraan &amp; Konstitusi</h2>
-      <p class="meta">Level <strong>C4 (Analisis)</strong> · Nomor soal <strong>21, 23</strong></p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-pen"></span>Penjelasan</h3>
-      <p><strong>NKRI</strong> adalah bentuk negara kesatuan yang bersifat final. Pilihan ini diambil untuk menjaga integrasi nasional.</p>
-      <p><strong>Konstituante</strong> (1956–1959) gagal menyusun UUD baru karena perdebatan ideologis yang berkepanjangan. Kegagalan ini berujung pada <strong>Dekrit Presiden 5 Juli 1959</strong> yang mengembalikan UUD 1945.</p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-con"></span>Contoh</h3>
-      <div class="contoh-box">
-        <span class="label">Kontekstual</span>
-        <ul>
-          <li>UUD 1945 Pasal 1 ayat (1): Negara Indonesia ialah Negara Kesatuan yang berbentuk Republik.</li>
-          <li>Risiko federalisme terhadap disintegrasi menjadi alasan penguatan bentuk kesatuan.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="block quiz">
-      <h3><span class="dot dot-quiz"></span>Mini Quiz</h3>
-      <ol>
-        <li>Bentuk NKRI diatur dalam UUD 1945…
-          <ul class="opsi">
-            <li>a. Pasal 1 ayat (1)</li>
-            <li>b. Pasal 1 ayat (2)</li>
-            <li>c. Pasal 28J ayat (2)</li>
-          </ul>
-        </li>
-        <li>Penyebab utama kegagalan Konstituante adalah…
-          <ul class="opsi">
-            <li>a. Perdebatan ideologis berkepanjangan</li>
-            <li>b. Kurangnya anggota</li>
-            <li>c. Tidak ada anggaran</li>
-          </ul>
-        </li>
-      </ol>
-      <details>
-        <summary>Lihat kunci jawaban</summary>
-        <p><strong>1.</strong> a — Pasal 1 ayat (1).<br>
-        <strong>2.</strong> a — Perdebatan ideologis yang tidak tuntas.</p>
-      </details>
-    </div>
-  </section>
-
-  <!-- ================= TOPIK 16 ================= -->
-  <section class="card" id="topik-16">
-    <div class="card-head">
-      <span class="badge">Topik 16</span>
-      <h2>Periodisasi Konstitusi (UUDS 1950)</h2>
-      <p class="meta">Level <strong>C4 (Analisis)</strong> · Nomor soal <strong>24, 25, 26, 27</strong></p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-pen"></span>Penjelasan</h3>
-      <p><strong>Demokrasi Parlementer</strong> (1950–1959) menggunakan UUDS 1950. Ciri utamanya: kabinet bertanggung jawab kepada parlemen.</p>
-      <p>Dampak negatifnya:</p>
-      <ul>
-        <li>sering terjadi pergantian kabinet,</li>
-        <li>ketidakstabilan politik,</li>
-        <li>terhambatnya pembangunan,</li>
-        <li>munculnya konflik daerah seperti PRRI/Permesta.</li>
-      </ul>
-      <p>Kondisi ini menjadi latar belakang kembalinya sistem presidensial.</p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-con"></span>Contoh</h3>
-      <div class="contoh-box">
-        <span class="label">Kontekstual</span>
-        <ul>
-          <li>Kabinet jatuh-bangun dalam waktu singkat karena mosi tidak percaya.</li>
-          <li>Konflik daerah PRRI/Permesta akibat ketidakpuasan terhadap pusat.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="block quiz">
-      <h3><span class="dot dot-quiz"></span>Mini Quiz</h3>
-      <ol>
-        <li>Konstitusi yang berlaku pada masa Demokrasi Parlementer adalah…
-          <ul class="opsi">
-            <li>a. UUD 1945</li>
-            <li>b. UUDS 1950</li>
-            <li>c. Konstitusi RIS 1949</li>
-          </ul>
-        </li>
-        <li>Dampak negatif seringnya pergantian kabinet adalah…
-          <ul class="opsi">
-            <li>a. Stabilitas politik meningkat</li>
-            <li>b. Pembangunan terhambat</li>
-            <li>c. Konflik daerah hilang</li>
-          </ul>
-        </li>
-      </ol>
-      <details>
-        <summary>Lihat kunci jawaban</summary>
-        <p><strong>1.</strong> b — UUDS 1950.<br>
-        <strong>2.</strong> b — Ketidakstabilan menghambat pembangunan.</p>
-      </details>
-    </div>
-  </section>
-
-  <!-- ================= TOPIK 17 ================= -->
-  <section class="card" id="topik-17">
-    <div class="card-head">
-      <span class="badge">Topik 17</span>
-      <h2>Transformasi Konstitusi &amp; Amandemen</h2>
-      <p class="meta">Level <strong>C4 (Analisis)</strong> · Nomor soal <strong>22, 28–35</strong></p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-pen"></span>Penjelasan</h3>
-      <p>Amandemen UUD 1945 dilakukan pada <strong>1999–2002</strong> dalam empat tahap. Perubahan utamanya:</p>
-      <ul>
-        <li>Pergeseran dari <em>executive heavy</em> menuju <strong>checks and balances</strong>.</li>
-        <li>Pembentukan <strong>Mahkamah Konstitusi</strong> (Pasal 24C).</li>
-        <li>Pembentukan <strong>Dewan Perwakilan Daerah</strong> (Pasal 22C–22D).</li>
-        <li>Perubahan <strong>Pasal 1 ayat (2)</strong>: kedaulatan rakyat dilaksanakan menurut UUD.</li>
-      </ul>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-con"></span>Contoh</h3>
-      <div class="contoh-box">
-        <span class="label">Kontekstual</span>
-        <ul>
-          <li><em>Judicial review</em> UU oleh Mahkamah Konstitusi.</li>
-          <li>Penyelesaian sengketa hasil pemilu presiden di MK.</li>
-          <li>Pemilu langsung sebagai wujud kedaulatan rakyat.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="block quiz">
-      <h3><span class="dot dot-quiz"></span>Mini Quiz</h3>
-      <ol>
-        <li>Pasal yang menjadi dasar pembentukan Mahkamah Konstitusi adalah…
-          <ul class="opsi">
-            <li>a. Pasal 24C</li>
-            <li>b. Pasal 22D</li>
-            <li>c. Pasal 1 ayat (2)</li>
-          </ul>
-        </li>
-        <li>Amandemen UUD 1945 bertujuan utama…
-          <ul class="opsi">
-            <li>a. Memperkuat kekuasaan presiden</li>
-            <li>b. Mewujudkan checks and balances</li>
-            <li>c. Mengganti dasar negara</li>
-          </ul>
-        </li>
-        <li>Perubahan Pasal 1 ayat (2) menegaskan bahwa kedaulatan rakyat dilaksanakan…
-          <ul class="opsi">
-            <li>a. Sepenuhnya oleh MPR</li>
-            <li>b. Menurut Undang-Undang Dasar</li>
-            <li>c. Oleh presiden</li>
-          </ul>
-        </li>
-      </ol>
-      <details>
-        <summary>Lihat kunci jawaban</summary>
-        <p><strong>1.</strong> a — Pasal 24C.<br>
-        <strong>2.</strong> b — Mewujudkan checks and balances.<br>
-        <strong>3.</strong> b — Menurut Undang-Undang Dasar.</p>
-      </details>
-    </div>
-  </section>
-
-  <!-- ================= TOPIK 18 ================= -->
-  <section class="card" id="topik-18">
-    <div class="card-head">
-      <span class="badge">Topik 18</span>
-      <h2>Perilaku Demokratis &amp; Keterbukaan Informasi</h2>
-      <p class="meta">Level <strong>C4 (Analisis)</strong> · Nomor soal <strong>36–40</strong></p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-pen"></span>Penjelasan</h3>
-      <p>Kebebasan berpendapat dijamin konstitusi, tetapi memiliki batasan agar tidak melanggar hak orang lain.</p>
-      <ul>
-        <li><strong>Pasal 28E ayat (3)</strong> — kebebasan berserikat dan menyatakan pendapat.</li>
-        <li><strong>Pasal 28F</strong> — hak memperoleh dan menyampaikan informasi.</li>
-        <li><strong>Pasal 28J ayat (2)</strong> — pembatasan HAM dilakukan dengan undang-undang.</li>
-        <li><strong>UU ITE</strong> — mengatur tindak pidana tertentu, termasuk ujaran kebencian.</li>
-        <li><strong>Restorative justice</strong> — penyelesaian kasus ringan melalui mediasi.</li>
-      </ul>
-      <p>Pembatasan HAM harus <strong>proporsional</strong> dan berdasarkan hukum.</p>
-    </div>
-
-    <div class="block">
-      <h3><span class="dot dot-con"></span>Contoh</h3>
-      <div class="contoh-box">
-        <span class="label">Kontekstual</span>
-        <ul>
-          <li>Demonstrasi damai dan kritik kebijakan publik.</li>
-          <li>Penyelesaian kasus pencemaran nama baik ringan melalui mediasi (restorative justice).</li>
-          <li>Menghindari ujaran kebencian saat berpendapat di media sosial.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="block quiz">
-      <h3><span class="dot dot-quiz"></span>Mini Quiz</h3>
-      <ol>
-        <li>Pasal yang mengatur pembatasan HAM oleh undang-undang adalah…
-          <ul class="opsi">
-            <li>a. Pasal 28E ayat (3)</li>
-            <li>b. Pasal 28J ayat (2)</li>
-            <li>c. Pasal 28F</li>
-          </ul>
-        </li>
-        <li>Restorative justice berarti…
-          <ul class="opsi">
-            <li>a. Penyelesaian kasus melalui pemulihan hubungan dan mediasi</li>
-            <li>b. Hukuman penjara seumur hidup</li>
-            <li>c. Pembebasan tanpa proses hukum</li>
-          </ul>
-        </li>
-        <li>Pembatasan HAM yang sah harus bersifat…
-          <ul class="opsi">
-            <li>a. Sewenang-wenang</li>
-            <li>b. Proporsional dan berdasarkan hukum</li>
-            <li>c. Tanpa dasar undang-undang</li>
-          </ul>
-        </li>
-      </ol>
-      <details>
-        <summary>Lihat kunci jawaban</summary>
-        <p><strong>1.</strong> b — Pasal 28J ayat (2).<br>
-        <strong>2.</strong> a — Pemulihan hubungan melalui mediasi.<br>
-        <strong>3.</strong> b — Proporsional dan berdasarkan hukum.</p>
-      </details>
-    </div>
-  </section>
-
+<section class="hero">
+  <div class="hero__eyebrow">Bahan Ajar Interaktif</div>
+  <h1>Memahami <span>Pancasila</span> Secara Mendalam</h1>
+  <p>Rangkuman materi lengkap berdasarkan kisi-kisi SAS Pendidikan Pancasila Kelas XI — mencakup dasar negara, ideologi, aktualisasi nilai, konstitusi, demokrasi, dan HAM.</p>
+  <div class="hero__stats">
+    <div class="stat"><div class="stat__num">18</div><div class="stat__label">Sub-Topik</div></div>
+    <div class="stat"><div class="stat__num">4</div><div class="stat__label">Unit</div></div>
+    <div class="stat"><div class="stat__num">40</div><div class="stat__label">Nomor SAS</div></div>
+  </div>
+</section>
+
+<div class="filters" id="filters">
+  <button class="filter-btn active" data-filter="all">Semua</button>
+  <button class="filter-btn" data-filter="unit1">Unit 1 · Dasar Negara &amp; Ideologi</button>
+  <button class="filter-btn" data-filter="unit2">Unit 2 · Aktualisasi Nilai</button>
+  <button class="filter-btn" data-filter="unit3">Unit 3 · Konstitusi</button>
+  <button class="filter-btn" data-filter="unit4">Unit 4 · Demokrasi &amp; HAM</button>
 </div>
 
+<div class="layout">
+
+  <aside class="toc" id="toc">
+    <div class="toc__title">Daftar Isi</div>
+    <div class="toc__unit">
+      <span class="toc__unit-label">Unit 1</span>
+      <ul class="toc__list">
+        <li><a href="#topik-1" class="toc__link">Kedudukan &amp; Fungsi Pancasila</a></li>
+        <li><a href="#topik-2" class="toc__link">Ideologi &amp; Tantangan Global</a></li>
+        <li><a href="#topik-3" class="toc__link">Ideologi Terbuka</a></li>
+        <li><a href="#topik-4" class="toc__link">Batas Keterbukaan</a></li>
+        <li><a href="#topik-14" class="toc__link">Pancasila sebagai Weltanschauung</a></li>
+      </ul>
+    </div>
+    <div class="toc__unit">
+      <span class="toc__unit-label">Unit 2</span>
+      <ul class="toc__list">
+        <li><a href="#topik-5" class="toc__link">Literasi Digital</a></li>
+        <li><a href="#topik-6" class="toc__link">Kehidupan Majemuk</a></li>
+        <li><a href="#topik-7" class="toc__link">Kesatuan Sila</a></li>
+        <li><a href="#topik-8" class="toc__link">Antar-Sila dalam Kasus Nyata</a></li>
+        <li><a href="#topik-9" class="toc__link">Keadilan Sosial</a></li>
+        <li><a href="#topik-10" class="toc__link">Pendorong Perubahan</a></li>
+        <li><a href="#topik-11" class="toc__link">Leitstar Dinamis</a></li>
+        <li><a href="#topik-12" class="toc__link">Integrasi Sila 1 &amp; 2</a></li>
+        <li><a href="#topik-13" class="toc__link">Aktualisasi Era Modern</a></li>
+      </ul>
+    </div>
+    <div class="toc__unit">
+      <span class="toc__unit-label">Unit 3</span>
+      <ul class="toc__list">
+        <li><a href="#topik-15" class="toc__link">Ketatanegaraan</a></li>
+        <li><a href="#topik-16" class="toc__link">UUDS 1950</a></li>
+        <li><a href="#topik-17" class="toc__link">Amandemen UUD 1945</a></li>
+      </ul>
+    </div>
+    <div class="toc__unit">
+      <span class="toc__unit-label">Unit 4</span>
+      <ul class="toc__list">
+        <li><a href="#topik-18" class="toc__link">Demokrasi &amp; HAM</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <main id="mainContent">
+
+    <!-- ============ UNIT 1 ============ -->
+    <div class="unit-header" data-unit="unit1" id="unit-1">
+      <div class="unit-header__tag">Unit 1</div>
+      <h2>Pancasila sebagai Dasar Negara dan Ideologi</h2>
+    </div>
+
+    <!-- TOPIK 1 -->
+    <article class="topic" id="topik-1" data-unit="unit1">
+      <div class="topic__head">
+        <div class="topic__num">1</div>
+        <div class="topic__title-wrap">
+          <div class="topic__title">Kedudukan &amp; Fungsi Pancasila</div>
+          <div class="topic__meta">
+            <span class="level">C3 · Aplikasi</span>
+            <span>Soal No. 1</span>
+          </div>
+        </div>
+        <div class="topic__toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="topic__body">
+        <div class="topic__inner">
+
+          <div class="materi-section">
+            <div class="materi-section__title">Pengertian dan Kedudukan</div>
+            <p>Pancasila bukan hanya rumusan lima sila yang dibacakan saat upacara. Ia menempati <strong>lima kedudukan strategis</strong> dalam kehidupan berbangsa dan bernegara:</p>
+            <ol>
+              <li><strong>Dasar negara (<em>philosophische grondslag</em>)</strong> — Pancasila menjadi landasan filosofis berdirinya Negara Kesatuan Republik Indonesia. Semua penyelenggaraan negara harus berpijak pada Pancasila.</li>
+              <li><strong>Ideologi nasional</strong> — sistem nilai yang dianut seluruh bangsa sebagai arah perjuangan dan cita-cita bersama.</li>
+              <li><strong>Pandangan hidup</strong> — pedoman bertindak warga negara dalam kehidupan sehari-hari, baik sebagai pribadi maupun anggota masyarakat.</li>
+              <li><strong>Sumber hukum</strong> — semua peraturan perundang-undangan tidak boleh bertentangan dengan nilai Pancasila. Hierarki hukum tertinggi ada pada nilai Pancasila yang termaktub dalam Pembukaan UUD 1945.</li>
+              <li><strong>Etika politik</strong> — tolok ukur moral bagi penyelenggara negara, baik eksekutif, legislatif, maupun yudikatif.</li>
+            </ol>
+          </div>
+
+          <div class="materi-section">
+            <div class="materi-section__title">Sila Kelima dalam Perlindungan UMKM</div>
+            <p>Sila Kelima — <em>Keadilan sosial bagi seluruh rakyat Indonesia</em> — menegaskan bahwa negara wajib mewujudkan <strong>keadilan ekonomi</strong>, bukan sekadar keadilan hukum. Salah satu wujud nyatanya adalah perlindungan terhadap <strong>usaha mikro, kecil, dan menengah (UMKM)</strong> dari praktik monopoli dan persaingan usaha tidak sehat.</p>
+            <p>UMKM merupakan tulang punggung ekonomi nasional yang menyerap sekitar 97% tenaga kerja Indonesia. Tanpa perlindungan, UMKM mudah tersingkir oleh <em>predatory pricing</em> (penetapan harga predator) atau praktik kartel yang dilakukan pemain besar.</p>
+            <p>Oleh karena itu, negara menerbitkan regulasi khusus agar keadilan ekonomi benar-benar dapat dirasakan seluruh lapisan rakyat.</p>
+          </div>
+
+          <div class="callout callout--hukum">
+            <span class="callout-label">Dasar Hukum</span>
+            <ul>
+              <li><strong>UUD 1945 Pasal 33 ayat (4)</strong> — perekonomian nasional diselenggarakan berdasar atas demokrasi ekonomi dengan prinsip kebersamaan, efisiensi berkeadilan, berkelanjutan, berwawasan lingkungan, kemandirian, serta menjaga keseimbangan kemajuan dan kesatuan ekonomi nasional.</li>
+              <li><strong>UU No. 20 Tahun 2008</strong> tentang Usaha Mikro, Kecil, dan Menengah.</li>
+              <li><strong>UU No. 5 Tahun 1999</strong> tentang Larangan Praktek Monopoli dan Persaingan Usaha Tidak Sehat.</li>
+            </ul>
+          </div>
+
+          <div class="callout callout--info">
+            <span class="callout-label">Contoh Kontekstual</span>
+            <ul>
+              <li>Program <strong>KUR (Kredit Usaha Rakyat)</strong> sebagai akses permodalan UMKM.</li>
+              <li><strong>Penguatan koperasi</strong> sebagai badan usaha berbasis gotong royong.</li>
+              <li><strong>Perlindungan pasar tradisional</strong> dari gempuran ritel modern.</li>
+              <li><strong>Penindakan KPPU</strong> terhadap praktik kartel dan <em>predatory pricing</em>.</li>
+            </ul>
+          </div>
+
+          <div class="kunci">
+            <div class="kunci__label">Poin Kunci untuk SAS</div>
+            <ul>
+              <li>Pancasila memiliki <strong>5 kedudukan</strong>: dasar negara, ideologi, pandangan hidup, sumber hukum, etika politik.</li>
+              <li>Sila Kelima menuntut keadilan <strong>ekonomi</strong>, bukan hanya keadilan hukum.</li>
+              <li>Hafalkan tiga dasar hukum: UUD 33(4), UU 20/2008 (UMKM), UU 5/1999 (Monopoli).</li>
+              <li>Contoh pengamalan konkret: KUR, koperasi, perlindungan pasar tradisional.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </article>
+
+    <!-- TOPIK 2 -->
+    <article class="topic" id="topik-2" data-unit="unit1">
+      <div class="topic__head">
+        <div class="topic__num">2</div>
+        <div class="topic__title-wrap">
+          <div class="topic__title">Ideologi Pancasila &amp; Tantangan Global</div>
+          <div class="topic__meta">
+            <span class="level">C3 · Aplikasi</span>
+            <span>Soal No. 2</span>
+          </div>
+        </div>
+        <div class="topic__toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="topic__body">
+        <div class="topic__inner">
+
+          <div class="materi-section">
+            <div class="materi-section__title">Apa Itu Ideologi?</div>
+            <p><strong>Ideologi</strong> berasal dari kata <em>idea</em> (gagasan) dan <em>logos</em> (ilmu). Ideologi adalah kumpulan gagasan, nilai, dan keyakinan yang menjadi pedoman bagi suatu kelompok atau bangsa dalam mencapai tujuan bersama.</p>
+            <p>Dalam konteks bernegara, ideologi berfungsi sebagai <strong>kompas moral</strong> dan <strong>perekat sosial</strong> yang menyatukan masyarakat majemuk.</p>
+          </div>
+
+          <div class="materi-section">
+            <div class="materi-section__title">Tantangan Global terhadap Pancasila</div>
+            <p>Era globalisasi dan digitalisasi membawa lima tantangan utama:</p>
+            <ol>
+              <li><strong>Radikalisme</strong> — gerakan yang ingin mengganti dasar negara secara paksa melalui cara-cara kekerasan.</li>
+              <li><strong>Disinformasi dan hoaks</strong> — informasi bohong yang menyasar kepercayaan publik dan memecah belah.</li>
+              <li><strong>Ujaran kebencian berbasis SARA</strong> — provokasi yang memperuncing perbedaan suku, agama, ras, dan antargolongan.</li>
+              <li><strong>Algoritma media sosial</strong> — memperkuat <em>echo chamber</em> yang membuat seseorang hanya melihat pandangan serupa.</li>
+              <li><strong>Budaya konsumerisme dan individualisme</strong> — melemahkan nilai gotong royong dan kebersamaan.</li>
+            </ol>
+          </div>
+
+          <div class="materi-section">
+            <div class="materi-section__title">Sikap Kritis dan Konstruktif Pelajar</div>
+            <p>Menghadapi tantangan tersebut, pelajar perlu bersikap <strong>kritis namun konstruktif</strong> — bukan reaktif dan provokatif. Sikap ini diwujudkan melalui:</p>
+            <ul>
+              <li><strong>Verifikasi</strong> — memastikan sumber informasi sebelum mempercayainya.</li>
+              <li><strong>Tidak menyebar</strong> hoaks dan konten provokatif.</li>
+              <li><strong>Melaporkan</strong> akun penyebar ideologi anti-Pancasila ke platform.</li>
+              <li><strong>Berdialog damai</strong> — menolak paham, bukan menyerang pribadi.</li>
+              <li><strong>Membuat konten produktif</strong> — edukasi, kampanye damai, dan literasi digital.</li>
+            </ul>
+          </div>
+
+          <div class="callout callout--info">
+            <span class="callout-label">Contoh Kontekstual</span>
+            <ul>
+              <li>Menemukan akun yang menyerukan penggantian ideologi negara — cukup laporkan, tidak perlu memperluas jangkauan dengan meneruskan tangkapan layar.</li>
+              <li>Membuat video pendek edukatif tentang bahaya radikalisme di media sosial.</li>
+              <li>Mengajak diskusi kelas dengan data dan argumen, bukan dengan hinaan atau ujaran kebencian.</li>
+            </ul>
+          </div>
+
+          <div class="kunci">
+            <div class="kunci__label">Poin Kunci untuk SAS</div>
+            <ul>
+              <li>Ideologi = kumpulan gagasan dan nilai sebagai pedoman hidup bangsa.</li>
+              <li>Lima tantangan global: radikalisme, hoaks, ujaran kebencian, algoritma, individualisme.</li>
+              <li>Sikap kritis-konstruktif ≠ reaktif-provokatif.</li>
+              <li>Langkah menghadapi akun anti-Pancasila: laporkan, jangan sebarkan, tidak membalas dengan kebencian.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </article>
+
+    <!-- TOPIK 3 -->
+    <article class="topic" id="topik-3" data-unit="unit1">
+      <div class="topic__head">
+        <div class="topic__num">3</div>
+        <div class="topic__title-wrap">
+          <div class="topic__title">Pancasila sebagai Ideologi Terbuka</div>
+          <div class="topic__meta">
+            <span class="level">C4 · Analisis</span>
+            <span>Soal No. 3, 16</span>
+          </div>
+        </div>
+        <div class="topic__toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="topic__body">
+        <div class="topic__inner">
+
+          <div class="materi-section">
+            <div class="materi-section__title">Ideologi Terbuka vs Ideologi Tertutup</div>
+            <p><strong>Ideologi terbuka</strong> memiliki nilai dasar yang tetap, tetapi penjabarannya bersifat dinamis sesuai perkembangan zaman. Nilai-nilainya bersumber dari masyarakat itu sendiri, bukan dipaksakan dari luar. <strong>Ideologi tertutup</strong> bersifat kaku, dogmatis, dan tidak boleh dikritik.</p>
+            <p>Pancasila termasuk ideologi terbuka karena nilai-nilainya digali dari budaya bangsa sendiri dan dapat ditafsirkan secara kontekstual tanpa mengubah substansinya.</p>
+          </div>
+
+          <div class="materi-section">
+            <div class="materi-section__title">Tiga Dimensi Ideologi Terbuka</div>
+            <ol>
+              <li><strong>Dimensi idealitas</strong> — nilai-nilai dasar yang menjadi cita-cita, seperti ketuhanan, kemanusiaan, persatuan, kerakyatan, dan keadilan.</li>
+              <li><strong>Dimensi normatif</strong> — nilai-nilai yang dijabarkan dalam aturan hukum dan konstitusi.</li>
+              <li><strong>Dimensi realitas</strong> — praktik nyata dalam kehidupan masyarakat yang terus berkembang.</li>
+            </ol>
+          </div>
+
+          <div class="materi-section">
+            <div class="materi-section__title">Strategi Penyaringan Budaya Asing</div>
+            <p>Globalisasi membawa masuk berbagai budaya asing. Sikap yang tepat bukan menolak seluruhnya, tetapi <strong>menyaring secara selektif</strong>:</p>
+            <ul>
+              <li><strong>Selektif</strong> — memilah mana yang sesuai dan mana yang bertentangan dengan Pancasila.</li>
+              <li><strong>Kritis</strong> — menilai budaya asing dengan akal sehat dan nilai agama.</li>
+              <li><strong>Adaptif</strong> — mengadopsi unsur positif (teknologi, ilmu pengetahuan) tanpa kehilangan identitas.</li>
+              <li><strong>Tidak isolasionis</strong> — tetap terbuka pada dunia luar, tidak menutup diri.</li>
+            </ul>
+          </div>
+
+          <div class="callout callout--info">
+            <span class="callout-label">Contoh Kontekstual</span>
+            <ul>
+              <li>Mengadopsi teknologi digital untuk mempromosikan budaya lokal ke dunia internasional.</li>
+              <li>Menyaring konten budaya asing yang bertentangan dengan kesopanan dan toleransi.</li>
+              <li>Menerima demokrasi digital, tetapi menolak politik identitas yang memecah belah persatuan.</li>
+            </ul>
+          </div>
+
+          <div class="kunci">
+            <div class="kunci__label">Poin Kunci untuk SAS</div>
+            <ul>
+              <li>Ideologi terbuka = nilai dasar tetap, penjabaran dinamis.</li>
+              <li>Tiga dimensi: <strong>idealitas, normatif, realitas</strong>.</li>
+              <li>Strategi filter budaya asing: selektif, kritis, adaptif, tidak isolasionis.</li>
+              <li>Ideologi tertutup bersifat dogmatis dan tidak boleh dikritik.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </article>
+
+    <!-- TOPIK 4 -->
+    <article class="topic" id="topik-4" data-unit="unit1">
+      <div class="topic__head">
+        <div class="topic__num">4</div>
+        <div class="topic__title-wrap">
+          <div class="topic__title">Batas Keterbukaan Ideologi</div>
+          <div class="topic__meta">
+            <span class="level">C2 · Pemahaman</span>
+            <span>Soal No. 4</span>
+          </div>
+        </div>
+        <div class="topic__toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="topic__body">
+        <div class="topic__inner">
+
+          <div class="materi-section">
+            <div class="materi-section__title">Mengapa Keterbukaan Perlu Batas?</div>
+            <p>Ideologi terbuka bukan berarti <em>segala sesuatu boleh masuk</em>. Tanpa batas, keterbukaan justru dapat mengancam eksistensi Pancasila dan keutuhan NKRI. Karena itu, nilai-nilai baru hanya boleh diterima jika <strong>memperkuat persatuan, keadilan, dan kemanusiaan</strong>, bukan menggantikan nilai dasar.</p>
+          </div>
+
+          <div class="materi-section">
+            <div class="materi-section__title">Lima Prinsip Batas Keterbukaan</div>
+            <ol>
+              <li><strong>Tidak mengubah nilai dasar Pancasila.</strong> Substansi kelima sila harus tetap utuh.</li>
+              <li><strong>Tidak bertentangan dengan Pembukaan UUD 1945.</strong> Pembukaan memuat tujuan negara yang tidak boleh diubah.</li>
+              <li><strong>Tidak mengganti ideologi negara.</strong> Pancasila adalah harga mati, tidak bisa digantikan ideologi lain.</li>
+              <li><strong>Tidak melanggar HAM.</strong> Nilai baru yang menindas manusia harus ditolak.</li>
+              <li><strong>Tidak memecah NKRI.</strong> Setiap ajaran yang mengancam persatuan dan kesatuan bangsa wajib ditolak.</li>
+            </ol>
+          </div>
+
+          <div class="callout callout--hukum">
+            <span class="callout-label">Dasar Hukum</span>
+            <ul>
+              <li><strong>TAP MPRS No. XXV/MPRS/1966</strong> — larangan ideologi komunisme/Marxisme-Leninisme di Indonesia.</li>
+              <li><strong>UUD 1945 Pasal 28J ayat (2)</strong> — dalam menjalankan hak dan kebebasannya, setiap orang wajib tunduk pada pembatasan yang ditetapkan dengan undang-undang.</li>
+            </ul>
+          </div>
+
+          <div class="callout callout--info">
+            <span class="callout-label">Contoh Kontekstual</span>
+            <ul>
+              <li>Nilai kebebasan liberal ekstrem ditolak karena mengancam nilai gotong royong dan keadilan sosial.</li>
+              <li>Ideologi yang mengajarkan kekerasan dan intoleransi ditolak meskipun dibungkus dengan narasi modern.</li>
+            </ul>
+          </div>
+
+          <div class="kunci">
+            <div class="kunci__label">Poin Kunci untuk SAS</div>
+            <ul>
+              <li>Keterbukaan ideologi <strong>tidak tanpa batas</strong>.</li>
+              <li>Hafalkan <strong>5 prinsip batas</strong>: tidak mengubah nilai dasar, tidak bertentangan Pembukaan UUD, tidak mengganti ideologi, tidak melanggar HAM, tidak memecah NKRI.</li>
+              <li>Dasar hukum: TAP MPRS XXV/1966 dan Pasal 28J ayat (2).</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </article>
+
+    <!-- TOPIK 14 -->
+    <article class="topic" id="topik-14" data-unit="unit1">
+      <div class="topic__head">
+        <div class="topic__num">14</div>
+        <div class="topic__title-wrap">
+          <div class="topic__title">Pancasila sebagai Weltanschauung</div>
+          <div class="topic__meta">
+            <span class="level">C2 · Pemahaman</span>
+            <span>Soal No. 18</span>
+          </div>
+        </div>
+        <div class="topic__toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="topic__body">
+        <div class="topic__inner">
+
+          <div class="materi-section">
+            <div class="materi-section__title">Makna Weltanschauung</div>
+            <p><em>Weltanschauung</em> berasal dari bahasa Jerman: <strong>Welt</strong> berarti dunia dan <strong>Anschauung</strong> berarti pandangan. Secara harfiah, weltanschauung berarti <strong>pandangan dunia</strong> atau <strong>pandangan hidup</strong>.</p>
+            <p>Dalam konteks Pancasila, weltanschauung berarti Pancasila menjadi <strong>cara pandang bangsa Indonesia</strong> dalam memahami kehidupan, bukan sekadar rumusan di atas kertas.</p>
+          </div>
+
+          <div class="materi-section">
+            <div class="materi-section__title">Tiga Fungsi Pancasila sebagai Pandangan Hidup</div>
+            <ol>
+              <li><strong>Sumber nilai</strong> — Pancasila menjadi asal-usul nilai moral yang dianut masyarakat.</li>
+              <li><strong>Pedoman bertindak</strong> — menjadi rujukan dalam mengambil keputusan sehari-hari.</li>
+              <li><strong>Penuntun arah bernegara</strong> — menjadi arah kebijakan publik dan pembangunan nasional.</li>
+            </ol>
+          </div>
+
+          <div class="callout callout--info">
+            <span class="callout-label">Contoh Kontekstual</span>
+            <ul>
+              <li><strong>Pembangunan berkelanjutan</strong> yang memperhatikan lingkungan sebagai wujud Sila Pertama dan Kelima.</li>
+              <li><strong>Pelayanan publik yang adil</strong> tanpa diskriminasi sebagai wujud Sila Kelima.</li>
+              <li><strong>Kebijakan inklusif</strong> bagi kelompok rentan (difabel, lansia) sebagai wujud Sila Kedua.</li>
+            </ul>
+          </div>
+
+          <div class="kunci">
+            <div class="kunci__label">Poin Kunci untuk SAS</div>
+            <ul>
+              <li><em>Weltanschauung</em> = <strong>pandangan hidup</strong>.</li>
+              <li>Pancasila bukan hanya simbol, tetapi <strong>diwujudkan dalam kebijakan dan perilaku</strong>.</li>
+              <li>Tiga fungsi: sumber nilai, pedoman bertindak, penuntun arah bernegara.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </article>
+
+    <!-- ============ UNIT 2 ============ -->
+    <div class="unit-header" data-unit="unit2" id="unit-2">
+      <div class="unit-header__tag">Unit 2</div>
+      <h2>Aktualisasi Nilai Pancasila dalam Kehidupan Majemuk dan Digital</h2>
+    </div>
+
+    <!-- TOPIK 5 -->
+    <article class="topic" id="topik-5" data-unit="unit2">
+      <div class="topic__head">
+        <div class="topic__num">5</div>
+        <div class="topic__title-wrap">
+          <div class="topic__title">Literasi Digital &amp; Etika Berinternet</div>
+          <div class="topic__meta">
+            <span class="level">C3 · Aplikasi</span>
+            <span>Soal No. 5, 20</span>
+          </div>
+        </div>
+        <div class="topic__toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="topic__body">
+        <div class="topic__inner">
+
+          <div class="materi-section">
+            <div class="materi-section__title">Memahami Hoaks dan Provokasi SARA</div>
+            <p><strong>Hoaks</strong> adalah informasi bohong yang sengaja dibuat dan disebarkan untuk menipu atau memancing reaksi. Hoaks sering dibungkus dengan judul provokatif dan gambar yang menyesatkan.</p>
+            <p><strong>Provokasi SARA</strong> adalah ujaran atau konten yang memancing kebencian atas dasar <em>Suku, Agama, Ras, dan Antargolongan</em>. Konten seperti ini sangat berbahaya karena dapat memecah persatuan bangsa.</p>
+          </div>
+
+          <div class="materi-section">
+            <div class="materi-section__title">Empat Prinsip Literasi Digital</div>
+            <ol>
+              <li><strong>Saring sebelum sharing</strong> — periksa kebenaran sebelum meneruskan.</li>
+              <li><strong>Cek fakta</strong> — bandingkan dengan sumber resmi dan kanal cek fakta.</li>
+              <li><strong>Laporkan</strong> — gunakan fitur pelaporan di platform untuk konten berbahaya.</li>
+              <li><strong>Santun</strong> — jaga etika, hormati privasi, hindari ujaran kebencian.</li>
+            </ol>
+          </div>
+
+          <div class="callout callout--hukum">
+            <span class="callout-label">Dasar Hukum</span>
+            <ul>
+              <li><strong>UU ITE Pasal 28 ayat (2)</strong> — larangan menyebarkan informasi yang menimbulkan rasa kebencian berdasarkan SARA.</li>
+              <li>Kanal cek fakta: <strong>Mafindo</strong>, <strong>TurnBackHoax</strong>, dan situs resmi Kominfo.</li>
+            </ul>
+          </div>
+
+          <div class="callout callout--info">
+            <span class="callout-label">Contoh Kontekstual</span>
+            <ul>
+              <li>Tidak meneruskan pesan berantai yang tidak jelas sumbernya.</li>
+              <li>Menggunakan kanal cek fakta sebelum mempercayai berita viral.</li>
+              <li>Melaporkan konten SARA ke fitur pelaporan platform.</li>
+              <li>Untuk kasus ringan, dapat ditempuh jalur <em>restorative justice</em>.</li>
+            </ul>
+          </div>
+
+          <div class="kunci">
+            <div class="kunci__label">Poin Kunci untuk SAS</div>
+            <ul>
+              <li>Hoaks = informasi bohong yang sengaja disebar.</li>
+              <li>SARA = Suku, Agama, Ras, Antargolongan.</li>
+              <li>Dasar hukum: <strong>UU ITE Pasal 28 ayat (2)</strong>.</li>
+              <li>Prinsip kunci: <strong>saring sebelum sharing</strong>.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </article>
+
+    <!-- TOPIK 6 -->
+    <article class="topic" id="topik-6" data-unit="unit2">
+      <div class="topic__head">
+        <div class="topic__num">6</div>
+        <div class="topic__title-wrap">
+          <div class="topic__title">Nilai Pancasila dalam Kehidupan Majemuk</div>
+          <div class="topic__meta">
+            <span class="level">C4 · Analisis</span>
+            <span>Soal No. 6</span>
+          </div>
+        </div>
+        <div class="topic__toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="topic__body">
+        <div class="topic__inner">
+
+          <div class="materi-section">
+            <div class="materi-section__title">Toleransi Beragama</div>
+            <p><strong>Toleransi beragama</strong> berarti menghormati perbedaan keyakinan tanpa mencampuradukkan ajaran agama. Toleransi bukan berarti mengakui semua agama sama, melainkan <strong>menghormati hak setiap orang untuk beribadah sesuai keyakinannya</strong>.</p>
+            <p>Indonesia mengakui enam agama resmi dan menjamin kebebasan beragama bagi seluruh warga negara, termasuk kelompok minoritas.</p>
+          </div>
+
+          <div class="materi-section">
+            <div class="materi-section__title">Moderasi Beragama</div>
+            <p><strong>Moderasi beragama</strong> adalah cara beragama yang seimbang: tidak ekstrem ke kanan (radikal) dan tidak ekstrem ke kiri (liberal). Moderasi mendorong sikap:</p>
+            <ul>
+              <li><strong>Tawasuth</strong> — jalan tengah.</li>
+              <li><strong>Tawazun</strong> — seimbang.</li>
+              <li><strong>I'tidal</strong> — lurus dan adil.</li>
+              <li><strong>Tasamuh</strong> — toleran.</li>
+            </ul>
+          </div>
+
+          <div class="callout callout--hukum">
+            <span class="callout-label">Dasar Hukum</span>
+            <ul>
+              <li><strong>UUD 1945 Pasal 28E ayat (1)</strong> — setiap orang bebas memeluk agama dan beribadat menurut agamanya.</li>
+              <li><strong>UUD 1945 Pasal 29 ayat (2)</strong> — negara menjamin kemerdekaan tiap-tiap penduduk untuk memeluk agamanya masing-masing dan untuk beribadat menurut agamanya dan kepercayaannya itu.</li>
+              <li><strong>UU No. 39 Tahun 1999</strong> tentang Hak Asasi Manusia.</li>
+              <li><strong>PBM (Peraturan Bersama Menteri)</strong> — pedoman pendirian rumah ibadah.</li>
+            </ul>
+          </div>
+
+          <div class="callout callout--info">
+            <span class="callout-label">Contoh Kontekstual</span>
+            <ul>
+              <li>Dialog lintas iman di sekolah untuk membangun saling pengertian.</li>
+              <li>Pemenuhan hak pendirian rumah ibadah sesuai PBM.</li>
+              <li>Menjenguk teman berbeda agama yang sakit sebagai wujud kemanusiaan.</li>
+              <li>Menghormati teman yang sedang berpuasa meskipun kita tidak berpuasa.</li>
+            </ul>
+          </div>
+
+          <div class="kunci">
+            <div class="kunci__label">Poin Kunci untuk SAS</div>
+            <ul>
+              <li>Toleransi ≠ mencampuradukkan ajaran agama.</li>
+              <li>Moderasi beragama = seimbang, tidak ekstrem.</li>
+              <li>Hafalkan <strong>Pasal 28E ayat (1) dan Pasal 29 ayat (2)</strong> UUD 1945.</li>
+              <li>Negara menjamin hak beribadah <strong>termasuk bagi minoritas</strong>.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </article>
+
+    <!-- TOPIK 7 -->
+    <article class="topic" id="topik-7" data-unit="unit2">
+      <div class="topic__head">
+        <div class="topic__num">7</div>
+        <div class="topic__title-wrap">
+          <div class="topic__title">Kesatuan Utuh Sila Pancasila</div>
+          <div class="topic__meta">
+            <span class="level">C2 · Pemahaman</span>
+            <span>Soal No. 7, 15, 19</span>
+          </div>
+        </div>
+        <div class="topic__toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="topic__body">
+        <div class="topic__inner">
+
+          <div class="materi-section">
+            <div class="materi-section__title">Pancasila sebagai Majemuk Tunggal</div>
+            <p>Pancasila disebut <strong>majemuk tunggal</strong> karena terdiri atas lima sila (majemuk), tetapi merupakan satu kesatuan yang utuh (tunggal). Sila-sila Pancasila <strong>saling menjiwai dan meliputi</strong>; tidak ada satu sila pun yang berdiri sendiri terpisah dari yang lain.</p>
+            <p>Hubungan antar-sila bersifat <strong>organis</strong>, ibarat tubuh manusia: kelima bagiannya berbeda fungsi, tetapi membentuk satu kesatuan yang hidup.</p>
+          </div>
+
+          <div class="materi-section">
+            <div class="materi-section__title">Bagaimana Sila Saling Menjiwai?</div>
+            <ul>
+              <li><strong>Sila 1 menjiwai Sila 2</strong> — keimanan menuntun penghormatan pada martabat manusia sebagai makhluk ciptaan Tuhan.</li>
+              <li><strong>Sila 2 melandasi Sila 3</strong> — persatuan dibangun atas dasar kemanusiaan yang adil dan beradab.</li>
+              <li><strong>Sila 3 melandasi Sila 4</strong> — musyawarah dilakukan untuk menjaga persatuan.</li>
+              <li><strong>Sila 4 melandasi Sila 5</strong> — keadilan dicapai melalui musyawarah yang bijak.</li>
+              <li><strong>Sila 5 menjiwai semua sila</strong> — keadilan menjadi tujuan akhir seluruh sila.</li>
+            </ul>
+          </div>
+
+          <div class="callout callout--info">
+            <span class="callout-label">Contoh Kontekstual</span>
+            <ul>
+              <li>Musyawarah kelas (Sila 4) yang menghormati pendapat minoritas (Sila 2) dan mengutamakan kepentingan bersama (Sila 3).</li>
+              <li>Gotong royong membersihkan lingkungan sebagai wujud Sila 3 sekaligus Sila 5.</li>
+              <li>Menolong korban bencana tanpa membedakan agama (Sila 1 &amp; 2).</li>
+            </ul>
+          </div>
+
+          <div class="kunci">
+            <div class="kunci__label">Poin Kunci untuk SAS</div>
+            <ul>
+              <li>Pancasila = <strong>majemuk tunggal</strong> (lima sila, satu kesatuan).</li>
+              <li>Sila saling <strong>menjiwai dan meliputi</strong>; tidak ada sila yang berdiri sendiri.</li>
+              <li>Hubungan antar-sila bersifat <strong>organis</strong>, bukan mekanis.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </article>
+
+    <!-- TOPIK 8 -->
+    <article class="topic" id="topik-8" data-unit="unit2">
+      <div class="topic__head">
+        <div class="topic__num">8</div>
+        <div class="topic__title-wrap">
+          <div class="topic__title">Keterkaitan Antar-Sila dalam Kasus Nyata</div>
+          <div class="topic__meta">
+            <span class="level">C3 · Aplikasi</span>
+            <span>Soal No. 8</span>
+          </div>
+        </div>
+        <div class="topic__toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="topic__body">
+        <div class="topic__inner">
+
+          <div class="materi-section">
+            <div class="materi-section__title">Kasus Pencemaran Limbah</div>
+            <p>Pencemaran limbah industri bukan hanya pelanggaran lingkungan, tetapi juga <strong>pelanggaran nilai Pancasila</strong>. Ketika sebuah pabrik membuang limbah ke sungai, warga sekitar kehilangan akses air bersih, mengalami gangguan kesehatan, dan kehilangan mata pencaharian.</p>
+            <p>Dua sila yang paling jelas dilanggar:</p>
+            <ul>
+              <li><strong>Sila Kedua (Kemanusiaan)</strong> — merendahkan martabat, kesehatan, dan hak hidup warga.</li>
+              <li><strong>Sila Kelima (Keadilan)</strong> — menciptakan ketidakadilan bagi masyarakat sekitar yang tidak menikmati keuntungan industri, tetapi menanggung dampaknya.</li>
+            </ul>
+          </div>
+
+          <div class="materi-section">
+            <div class="materi-section__title">Tanggung Jawab Sosial Perusahaan</div>
+            <p>Perusahaan memiliki kewajiban <strong>tanggung jawab sosial dan lingkungan (TJSL)</strong> yang diatur dalam UU Perseroan Terbatas dan UU PPLH. Negara wajib menegakkan hukum agar keadilan ekologis terwujud.</p>
+          </div>
+
+          <div class="callout callout--hukum">
+            <span class="callout-label">Dasar Hukum</span>
+            <ul>
+              <li><strong>UU No. 32 Tahun 2009</strong> tentang Perlindungan dan Pengelolaan Lingkungan Hidup.</li>
+              <li><strong>AMDAL</strong> — Analisis Mengenai Dampak Lingkungan sebagai syarat kegiatan usaha berdampak besar.</li>
+              <li><strong>UUD 1945 Pasal 28H ayat (1)</strong> — setiap orang berhak hidup sejahtera lahir dan batin, bertempat tinggal, dan mendapatkan lingkungan hidup yang baik dan sehat.</li>
+            </ul>
+          </div>
+
+          <div class="callout callout--info">
+            <span class="callout-label">Contoh Kontekstual</span>
+            <ul>
+              <li>Kasus pencemaran Sungai Citarum oleh limbah industri tekstil.</li>
+              <li>Kasus kebakaran hutan dan lahan yang berdampak pada kesehatan masyarakat.</li>
+              <li>Kewajiban reklamasi lahan bekas tambang.</li>
+            </ul>
+          </div>
+
+          <div class="kunci">
+            <div class="kunci__label">Poin Kunci untuk SAS</div>
+            <ul>
+              <li>Pencemaran limbah melanggar <strong>Sila 2 (kemanusiaan) dan Sila 5 (keadilan)</strong>.</li>
+              <li>Dasar hukum: <strong>UU 32/2009</strong> dan <strong>UUD Pasal 28H ayat (1)</strong>.</li>
+              <li>Konsep kunci: <strong>keadilan ekologis</strong> dan <strong>AMDAL</strong>.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </article>
+
+    <!-- TOPIK 9 -->
+    <article class="topic" id="topik-9" data-unit="unit2">
+      <div class="topic__head">
+        <div class="topic__num">9</div>
+        <div class="topic__title-wrap">
+          <div class="topic__title">Hakikat Keadilan Sosial</div>
+          <div class="topic__meta">
+            <span class="level">C2 · Pemahaman</span>
+            <span>Soal No. 9</span>
+          </div>
+        </div>
+        <div class="topic__toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="topic__body">
+        <div class="topic__inner">
+
+          <div class="materi-section">
+            <div class="materi-section__title">Empat Jenis Keadilan</div>
+            <ol>
+              <li><strong>Keadilan distributif</strong> — pembagian sumber daya negara secara adil kepada seluruh warga.</li>
+              <li><strong>Keadilan komutatif</strong> — keadilan dalam pertukaran (jual beli, upah kerja).</li>
+              <li><strong>Keadilan legal</strong> — keadilan dalam hukum, setiap orang sama di hadapan hukum.</li>
+              <li><strong>Keadilan sosial</strong> — kesetaraan kesempatan bagi seluruh warga untuk berkembang.</li>
+            </ol>
+          </div>
+
+          <div class="materi-section">
+            <div class="materi-section__title">Kesetaraan Kesempatan</div>
+            <p>Keadilan sosial tidak berarti semua orang harus sama hasilnya, tetapi setiap warga memiliki <strong>peluang yang setara</strong> untuk mengembangkan potensinya. Anak dari keluarga kurang mampu harus punya akses pendidikan yang sama dengan anak dari keluarga mampu.</p>
+            <p>Karena itu, negara menerapkan <strong>kebijakan afirmatif</strong> (affirmative action) — kebijakan yang memberi perlakuan khusus untuk mempercepat pemerataan, misalnya beasiswa bagi siswa berprestasi dari keluarga kurang mampu.</p>
+          </div>
+
+          <div class="callout callout--hukum">
+            <span class="callout-label">Dasar Hukum</span>
+            <ul>
+              <li><strong>UUD 1945 Pasal 27, 28, 33, dan 34</strong> — jaminan kesetaraan, kesejahteraan sosial, dan pendidikan.</li>
+            </ul>
+          </div>
+
+          <div class="callout callout--info">
+            <span class="callout-label">Contoh Kontekstual</span>
+            <ul>
+              <li>Beasiswa bagi siswa berprestasi dari keluarga kurang mampu (KIP).</li>
+              <li>Bantuan Langsung Tunai (BLT) dan subsidi tepat sasaran.</li>
+              <li>Pembangunan infrastruktur desa dan pendidikan inklusif.</li>
+            </ul>
+          </div>
+
+          <div class="kunci">
+            <div class="kunci__label">Poin Kunci untuk SAS</div>
+            <ul>
+              <li>Keadilan sosial fokus pada <strong>kesetaraan kesempatan</strong>, bukan kesamaan hasil.</li>
+              <li>Kebijakan afirmatif = perlakuan khusus untuk pemerataan.</li>
+              <li>Hafalkan <strong>4 jenis keadilan</strong>: distributif, komutatif, legal, sosial.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </article>
+
+    <!-- TOPIK 10 -->
+    <article class="topic" id="topik-10" data-unit="unit2">
+      <div class="topic__head">
+        <div class="topic__num">10</div>
+        <div class="topic__title-wrap">
+          <div class="topic__title">Pancasila sebagai Pendorong Perubahan</div>
+          <div class="topic__meta">
+            <span class="level">C4 · Analisis</span>
+            <span>Soal No. 10, 11, 12</span>
+          </div>
+        </div>
+        <div class="topic__toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="topic__body">
+        <div class="topic__inner">
+
+          <div class="materi-section">
+            <div class="materi-section__title">Pancasila Bersifat Transformatif</div>
+            <p>Pancasila bukan sekadar ideologi yang mempertahankan status quo. Nilai-nilai Pancasila bersifat <strong>transformatif</strong> — mendorong perubahan sosial menuju kehidupan yang lebih adil dan manusiawi.</p>
+            <p>Perubahan yang didorong Pancasila harus bersifat <strong>damai dan konstitusional</strong>, tidak boleh anarkis atau melanggar hukum.</p>
+          </div>
+
+          <div class="materi-section">
+            <div class="materi-section__title">Tiga Peran Pancasila sebagai Pendorong Perubahan</div>
+            <ol>
+              <li><strong>Landasan gerakan sosial</strong> — gerakan yang memperjuangkan keadilan berpijak pada nilai Pancasila.</li>
+              <li><strong>Perlindungan kaum marginal</strong> — kelompok rentan (buruh, difabel, komunitas adat) dilindungi berdasarkan nilai kemanusiaan.</li>
+              <li><strong>Kelestarian lingkungan</strong> — gerakan lingkungan berpijak pada nilai keadilan antar-generasi.</li>
+            </ol>
+          </div>
+
+          <div class="callout callout--info">
+            <span class="callout-label">Contoh Kontekstual</span>
+            <ul>
+              <li>Advokasi hak buruh dan pekerja informal oleh serikat pekerja.</li>
+              <li>Pendampingan komunitas difabel agar aksesibilitas fasilitas publik terpenuhi.</li>
+              <li>Gerakan masyarakat adat menjaga hutan dan lingkungan dari perusakan.</li>
+              <li>Gerakan anti-korupsi yang memperjuangkan transparansi anggaran.</li>
+            </ul>
+          </div>
+
+          <div class="kunci">
+            <div class="kunci__label">Poin Kunci untuk SAS</div>
+            <ul>
+              <li>Pancasila bersifat <strong>transformatif</strong>, bukan konservatif semata.</li>
+              <li>Perubahan harus <strong>damai dan konstitusional</strong>.</li>
+              <li>Tiga peran: gerakan sosial, perlindungan marginal, kelestarian lingkungan.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </article>
+
+    <!-- TOPIK 11 -->
+    <article class="topic" id="topik-11" data-unit="unit2">
+      <div class="topic__head">
+        <div class="topic__num">11</div>
+        <div class="topic__title-wrap">
+          <div class="topic__title">Leitstar Dinamis &amp; Dinamika Global</div>
+          <div class="topic__meta">
+            <span class="level">C4 · Analisis</span>
+            <span>Soal No. 13</span>
+          </div>
+        </div>
+        <div class="topic__toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="topic__body">
+        <div class="topic__inner">
+
+          <div class="materi-section">
+            <div class="materi-section__title">Apa Itu Leitstar Dinamis?</div>
+            <p><em>Leitstar</em> berasal dari bahasa Jerman yang berarti <strong>bintang penuntun</strong>. Pancasila disebut <em>leitstar dinamis</em> karena berfungsi sebagai bintang penuntun yang <strong>selalu relevan</strong> sepanjang zaman.</p>
+            <p>Dinamis berarti: nilai dasarnya tetap, tetapi <strong>implementasinya menyesuaikan konteks zaman</strong>. Pancasila tidak kaku, tetapi juga tidak berubah substansi.</p>
+          </div>
+
+          <div class="materi-section">
+            <div class="materi-section__title">Respons terhadap Tantangan Kontemporer</div>
+            <p>Tantangan zaman yang perlu dijawab Pancasila:</p>
+            <ul>
+              <li><strong>Kecerdasan artifisial (AI)</strong> — etika penggunaan AI yang menghormati martabat manusia.</li>
+              <li><strong>Digitalisasi</strong> — pelindungan data pribadi dan keamanan siber.</li>
+              <li><strong>Krisis iklim</strong> — pembangunan berkelanjutan dan keadilan ekologis.</li>
+              <li><strong>Ekonomi digital</strong> — pemerataan akses teknologi dan inklusi keuangan.</li>
+            </ul>
+          </div>
+
+          <div class="callout callout--hukum">
+            <span class="callout-label">Dasar Hukum</span>
+            <ul>
+              <li><strong>UU No. 27 Tahun 2022</strong> tentang Pelindungan Data Pribadi.</li>
+            </ul>
+          </div>
+
+          <div class="callout callout--info">
+            <span class="callout-label">Contoh Kontekstual</span>
+            <ul>
+              <li>Etika penggunaan AI yang tidak diskriminatif dan menghormati privasi.</li>
+              <li>Kebijakan ekonomi digital yang inklusif (Sila 5).</li>
+              <li>Regulasi pelindungan data pribadi sebagai wujud keadilan digital.</li>
+            </ul>
+          </div>
+
+          <div class="kunci">
+            <div class="kunci__label">Poin Kunci untuk SAS</div>
+            <ul>
+              <li><em>Leitstar dinamis</em> = bintang penuntun yang dinamis.</li>
+              <li>Nilai dasar tetap, <strong>implementasi menyesuaikan zaman</strong>.</li>
+              <li>Contoh respons: UU <strong>PDP No. 27/2022</strong>, etika AI, ekonomi digital inklusif.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </article>
+
+    <!-- TOPIK 12 -->
+    <article class="topic" id="topik-12" data-unit="unit2">
+      <div class="topic__head">
+        <div class="topic__num">12</div>
+        <div class="topic__title-wrap">
+          <div class="topic__title">Integrasi Sila Pertama &amp; Kedua</div>
+          <div class="topic__meta">
+            <span class="level">C2 · Pemahaman</span>
+            <span>Soal No. 14</span>
+          </div>
+        </div>
+        <div class="topic__toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="topic__body">
+        <div class="topic__inner">
+
+          <div class="materi-section">
+            <div class="materi-section__title">Sinergi Iman dan Kemanusiaan</div>
+            <p>Keimanan sejati tidak boleh merendahkan martabat manusia. Justru sebaliknya, <strong>iman mendorong kasih sayang dan penghormatan pada sesama manusia</strong>. Sila Pertama (Ketuhanan) menjiwai Sila Kedua (Kemanusiaan) melalui nilai-nilai:</p>
+            <ul>
+              <li><strong>Kasih sayang</strong> — mengasihi sesama sebagai makhluk ciptaan Tuhan.</li>
+              <li><strong>Toleransi</strong> — menghormati perbedaan keyakinan.</li>
+              <li><strong>Tidak memaksakan agama</strong> — menghormati kebebasan beragama.</li>
+              <li><strong>Solidaritas kemanusiaan</strong> — menolong tanpa membedakan agama.</li>
+            </ul>
+          </div>
+
+          <div class="materi-section">
+            <div class="materi-section__title">Religiusitas dan HAM Berjalan Seiring</div>
+            <p>Agama dan HAM tidak bertentangan. Justru nilai-nilai agama mendukung tegaknya HAM: menghormati kehidupan, kebebasan beribadah, dan menjaga martabat manusia.</p>
+          </div>
+
+          <div class="callout callout--info">
+            <span class="callout-label">Contoh Kontekstual</span>
+            <ul>
+              <li>Aksi kemanusiaan lintas agama saat bencana alam.</li>
+              <li>Menghormati teman yang sedang berpuasa meskipun kita tidak berpuasa.</li>
+              <li>Tidak memaksakan keyakinan kepada orang lain.</li>
+              <li>Membela korban diskriminasi agama sesuai nilai kemanusiaan.</li>
+            </ul>
+          </div>
+
+          <div class="kunci">
+            <div class="kunci__label">Poin Kunci untuk SAS</div>
+            <ul>
+              <li>Keimanan <strong>sejalan</strong> dengan penghormatan HAM, tidak bertentangan.</li>
+              <li>Sila 1 <strong>menjiwai</strong> Sila 2 melalui kasih sayang dan toleransi.</li>
+              <li>Contoh kunci: aksi kemanusiaan lintas agama.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </article>
+
+    <!-- TOPIK 13 -->
+    <article class="topic" id="topik-13" data-unit="unit2">
+      <div class="topic__head">
+        <div class="topic__num">13</div>
+        <div class="topic__title-wrap">
+          <div class="topic__title">Aktualisasi Nilai di Era Modern</div>
+          <div class="topic__meta">
+            <span class="level">C3 · Aplikasi</span>
+            <span>Soal No. 17</span>
+          </div>
+        </div>
+        <div class="topic__toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="topic__body">
+        <div class="topic__inner">
+
+          <div class="materi-section">
+            <div class="materi-section__title">Nasionalisme Digital Positif</div>
+            <p><strong>Nasionalisme digital positif</strong> adalah ekspresi cinta tanah air di ruang digital yang <strong>produktif, etis, dan membangun</strong> — bukan sekadar simbol, bukan pula provokasi terhadap negara lain.</p>
+            <p>Nasionalisme digital positif tetap terbuka pada dunia global, tetapi tetap berpijak pada identitas kebangsaan.</p>
+          </div>
+
+          <div class="materi-section">
+            <div class="materi-section__title">Bentuk-Bentuk Nasionalisme Digital Positif</div>
+            <ol>
+              <li><strong>Cinta produk lokal</strong> — mempromosikan UMKM Indonesia.</li>
+              <li><strong>Promosi budaya</strong> — membuat konten tentang budaya daerah.</li>
+              <li><strong>Literasi digital</strong> — mengedukasi masyarakat tentang bahaya hoaks.</li>
+              <li><strong>Jurnalisme warga</strong> — melaporkan peristiwa secara bertanggung jawab.</li>
+              <li><strong>Kampanye damai</strong> — menyebarkan pesan persatuan dan toleransi.</li>
+            </ol>
+          </div>
+
+          <div class="callout callout--info">
+            <span class="callout-label">Contoh Kontekstual</span>
+            <ul>
+              <li>Membuat konten edukasi tentang budaya daerah di media sosial.</li>
+              <li><em>Crowdfunding</em> untuk korban bencana alam.</li>
+              <li>Kampanye anti-hoaks di media sosial sekolah.</li>
+              <li>Mempromosikan produk UMKM lokal melalui konten kreatif.</li>
+            </ul>
+          </div>
+
+          <div class="kunci">
+            <div class="kunci__label">Poin Kunci untuk SAS</div>
+            <ul>
+              <li>Nasionalisme digital positif = <strong>produktif, etis, terbuka</strong>.</li>
+              <li>Bukan provokasi, bukan menutup diri dari global.</li>
+              <li>Contoh kunci: konten edukasi, crowdfunding, promosi UMKM lokal.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </article>
+
+    <!-- ============ UNIT 3 ============ -->
+    <div class="unit-header" data-unit="unit3" id="unit-3">
+      <div class="unit-header__tag">Unit 3</div>
+      <h2>Konstitusi dan Sistem Ketatanegaraan Indonesia</h2>
+    </div>
+
+    <!-- TOPIK 15 -->
+    <article class="topic" id="topik-15" data-unit="unit3">
+      <div class="topic__head">
+        <div class="topic__num">15</div>
+        <div class="topic__title-wrap">
+          <div class="topic__title">Sistem Ketatanegaraan &amp; Konstitusi</div>
+          <div class="topic__meta">
+            <span class="level">C4 · Analisis</span>
+            <span>Soal No. 21, 23</span>
+          </div>
+        </div>
+        <div class="topic__toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="topic__body">
+        <div class="topic__inner">
+
+          <div class="materi-section">
+            <div class="materi-section__title">NKRI sebagai Pilihan Final</div>
+            <p><strong>Negara Kesatuan Republik Indonesia (NKRI)</strong> adalah bentuk negara yang bersifat <strong>final</strong> — tidak bisa diubah lagi menjadi bentuk federal atau lainnya. Pilihan ini diambil dengan pertimbangan:</p>
+            <ul>
+              <li>Menjaga <strong>integrasi nasional</strong> dari ancaman disintegrasi.</li>
+              <li>Mempertahankan semangat <strong>Sumpah Pemuda 1928</strong> — satu nusa, satu bangsa, satu bahasa.</li>
+              <li>Mencegah konflik antar-daerah yang dapat muncul dalam sistem federal.</li>
+              <li>Memperkuat <strong>persatuan</strong> sebagai nilai Sila Ketiga.</li>
+            </ul>
+          </div>
+
+          <div class="materi-section">
+            <div class="materi-section__title">Sejarah Kegagalan Konstituante</div>
+            <p><strong>Konstituante</strong> adalah lembaga yang dibentuk melalui Pemilu 1955 untuk menyusun UUD baru menggantikan UUDS 1950. Namun, Konstituante <strong>gagal</strong> karena:</p>
+            <ul>
+              <li>Perdebatan ideologis berkepanjangan — kelompok Islam, nasionalis, dan komunis tidak menemukan titik temu.</li>
+              <li>Dasar negara (Pancasila vs Islam) menjadi perdebatan yang tidak terselesaikan.</li>
+              <li>Ketidakstabilan politik membuat kinerja Konstituante terhambat.</li>
+            </ul>
+            <p>Kegagalan ini berujung pada <strong>Dekrit Presiden 5 Juli 1959</strong> yang mengembalikan UUD 1945 dan membubarkan Konstituante.</p>
+          </div>
+
+          <div class="callout callout--hukum">
+            <span class="callout-label">Dasar Hukum</span>
+            <ul>
+              <li><strong>UUD 1945 Pasal 1 ayat (1)</strong> — Negara Indonesia ialah Negara Kesatuan yang berbentuk Republik.</li>
+            </ul>
+          </div>
+
+          <div class="kunci">
+            <div class="kunci__label">Poin Kunci untuk SAS</div>
+            <ul>
+              <li>NKRI = bentuk negara <strong>final</strong>, diatur Pasal 1 ayat (1).</li>
+              <li>Konstituante <strong>gagal</strong> karena perdebatan ideologis berkepanjangan.</li>
+              <li>Kegagalan berujung pada <strong>Dekrit Presiden 5 Juli 1959</strong>.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </article>
+
+    <!-- TOPIK 16 -->
+    <article class="topic" id="topik-16" data-unit="unit3">
+      <div class="topic__head">
+        <div class="topic__num">16</div>
+        <div class="topic__title-wrap">
+          <div class="topic__title">Periodisasi Konstitusi (UUDS 1950)</div>
+          <div class="topic__meta">
+            <span class="level">C4 · Analisis</span>
+            <span>Soal No. 24–27</span>
+          </div>
+        </div>
+        <div class="topic__toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="topic__body">
+        <div class="topic__inner">
+
+          <div class="materi-section">
+            <div class="materi-section__title">Demokrasi Parlementer 1950–1959</div>
+            <p>Setelah RIS dibubarkan, Indonesia kembali ke bentuk negara kesatuan dan memberlakukan <strong>UUDS 1950</strong>. Sistem pemerintahan yang dipakai adalah <strong>Demokrasi Parlementer</strong> — kabinet bertanggung jawab kepada parlemen (DPR), bukan kepada presiden.</p>
+            <p>Ciri utama Demokrasi Parlementer:</p>
+            <ul>
+              <li>Presiden hanya sebagai kepala negara, tidak sebagai kepala pemerintahan.</li>
+              <li>Kepala pemerintahan adalah <strong>perdana menteri</strong>.</li>
+              <li>Kabinet bisa <strong>dijatuhkan</strong> oleh parlemen melalui mosi tidak percaya.</li>
+            </ul>
+          </div>
+
+          <div class="materi-section">
+            <div class="materi-section__title">Dampak Negatif Ketidakstabilan Politik</div>
+            <p>Demokrasi Parlementer membawa dampak negatif yang signifikan:</p>
+            <ol>
+              <li><strong>Sering pergantian kabinet</strong> — dalam sembilan tahun, terjadi tujuh kali pergantian kabinet.</li>
+              <li><strong>Ketidakstabilan politik</strong> — program pembangunan tidak berjalan karena kabinet tidak bertahan lama.</li>
+              <li><strong>Terhambatnya pembangunan</strong> — anggaran habis untuk pergantian kabinet.</li>
+              <li><strong>Munculnya konflik daerah</strong> — ketidakpuasan daerah terhadap pusat memuncak dalam pemberontakan PRRI (Sumatera) dan Permesta (Sulawesi).</li>
+            </ol>
+            <p>Kondisi ini menjadi latar belakang kembalinya sistem presidensial melalui Dekrit Presiden 5 Juli 1959.</p>
+          </div>
+
+          <div class="kunci">
+            <div class="kunci__label">Poin Kunci untuk SAS</div>
+            <ul>
+              <li>Demokrasi Parlementer (1950–1959) menggunakan <strong>UUDS 1950</strong>.</li>
+              <li>Kabinet <strong>bertanggung jawab kepada parlemen</strong>, bukan presiden.</li>
+              <li>Dampak negatif: sering pergantian kabinet, ketidakstabilan, terhambatnya pembangunan, <strong>PRRI/Permesta</strong>.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </article>
+
+    <!-- TOPIK 17 -->
+    <article class="topic" id="topik-17" data-unit="unit3">
+      <div class="topic__head">
+        <div class="topic__num">17</div>
+        <div class="topic__title-wrap">
+          <div class="topic__title">Transformasi Konstitusi &amp; Amandemen</div>
+          <div class="topic__meta">
+            <span class="level">C4 · Analisis</span>
+            <span>Soal No. 22, 28–35</span>
+          </div>
+        </div>
+        <div class="topic__toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="topic__body">
+        <div class="topic__inner">
+
+          <div class="materi-section">
+            <div class="materi-section__title">Amandemen UUD 1945 (1999–2002)</div>
+            <p>Reformasi 1998 membuka jalan bagi <strong>empat tahap amandemen</strong> UUD 1945:</p>
+            <ul>
+              <li><strong>1999</strong> — amandemen pertama.</li>
+              <li><strong>2000</strong> — amandemen kedua.</li>
+              <li><strong>2001</strong> — amandemen ketiga.</li>
+              <li><strong>2002</strong> — amandemen keempat.</li>
+            </ul>
+            <p>Tujuan utama amandemen: membatasi kekuasaan, memperkuat HAM, dan mewujudkan <strong>checks and balances</strong> antar-lembaga negara.</p>
+          </div>
+
+          <div class="materi-section">
+            <div class="materi-section__title">Pergeseran Kekuasaan: Executive Heavy → Checks and Balances</div>
+            <p>Sebelum amandemen, kekuasaan presiden sangat dominan (<em>executive heavy</em>): presiden bisa membubarkan DPR, mengangkat anggota MPR, dan mengendalikan lembaga negara lainnya. Setelah amandemen, kekuasaan dibagi dan saling mengawasi.</p>
+            <p>Perubahan penting:</p>
+            <ol>
+              <li><strong>Pembentukan Mahkamah Konstitusi</strong> (Pasal 24C) — menguji UU terhadap UUD, menyelesaikan sengketa kewenangan lembaga negara, membubarkan partai politik, dan memutus perselisihan hasil pemilu.</li>
+              <li><strong>Pembentukan DPD</strong> (Pasal 22C–22D) — memperkuat representasi daerah.</li>
+              <li><strong>Perubahan Pasal 1 ayat (2)</strong> — dari "kedaulatan dilakukan sepenuhnya oleh MPR" menjadi "kedaulatan rakyat dilaksanakan menurut Undang-Undang Dasar".</li>
+              <li><strong>Pemilu langsung</strong> — presiden dan wakil presiden dipilih langsung oleh rakyat.</li>
+              <li><strong>Pembatasan masa jabatan presiden</strong> — maksimal dua periode.</li>
+            </ol>
+          </div>
+
+          <div class="callout callout--hukum">
+            <span class="callout-label">Dasar Hukum</span>
+            <ul>
+              <li><strong>UUD 1945 Pasal 1 ayat (2)</strong> — kedaulatan rakyat dilaksanakan menurut Undang-Undang Dasar.</li>
+              <li><strong>Pasal 24C</strong> — kewenangan Mahkamah Konstitusi.</li>
+              <li><strong>Pasal 22C–22D</strong> — DPD.</li>
+            </ul>
+          </div>
+
+          <div class="callout callout--info">
+            <span class="callout-label">Contoh Kontekstual</span>
+            <ul>
+              <li><em>Judicial review</em> UU oleh Mahkamah Konstitusi.</li>
+              <li>Penyelesaian sengketa hasil pemilu presiden di MK.</li>
+              <li>Pemilu langsung sebagai wujud kedaulatan rakyat.</li>
+            </ul>
+          </div>
+
+          <div class="kunci">
+            <div class="kunci__label">Poin Kunci untuk SAS</div>
+            <ul>
+              <li>Amandemen UUD 1945: <strong>1999, 2000, 2001, 2002</strong> (empat tahap).</li>
+              <li>Tujuan: <strong>executive heavy → checks and balances</strong>.</li>
+              <li>Lembaga baru: <strong>Mahkamah Konstitusi (Pasal 24C)</strong> dan <strong>DPD (Pasal 22C–22D)</strong>.</li>
+              <li>Perubahan Pasal 1 ayat (2): kedaulatan rakyat dilaksanakan menurut UUD.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </article>
+
+    <!-- ============ UNIT 4 ============ -->
+    <div class="unit-header" data-unit="unit4" id="unit-4">
+      <div class="unit-header__tag">Unit 4</div>
+      <h2>Demokrasi, Kebebasan Berpendapat, dan HAM</h2>
+    </div>
+
+    <!-- TOPIK 18 -->
+    <article class="topic" id="topik-18" data-unit="unit4">
+      <div class="topic__head">
+        <div class="topic__num">18</div>
+        <div class="topic__title-wrap">
+          <div class="topic__title">Perilaku Demokratis &amp; Keterbukaan Informasi</div>
+          <div class="topic__meta">
+            <span class="level">C4 · Analisis</span>
+            <span>Soal No. 36–40</span>
+          </div>
+        </div>
+        <div class="topic__toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="topic__body">
+        <div class="topic__inner">
+
+          <div class="materi-section">
+            <div class="materi-section__title">Kebebasan Berpendapat yang Dijamin Konstitusi</div>
+            <p>UUD 1945 menjamin kebebasan berpendapat sebagai hak asasi setiap warga negara:</p>
+            <ul>
+              <li><strong>Pasal 28E ayat (3)</strong> — setiap orang berhak atas kebebasan berserikat, berkumpul, dan mengeluarkan pendapat.</li>
+              <li><strong>Pasal 28F</strong> — setiap orang berhak untuk berkomunikasi dan memperoleh informasi untuk mengembangkan pribadi dan lingkungan sosialnya, serta berhak untuk mencari, memperoleh, memiliki, menyimpan, mengolah, dan menyampaikan informasi dengan menggunakan segala jenis saluran yang tersedia.</li>
+            </ul>
+          </div>
+
+          <div class="materi-section">
+            <div class="materi-section__title">Batasan Kebebasan: Pasal 28J ayat (2)</div>
+            <p>Kebebasan berpendapat <strong>bukan tanpa batas</strong>. Pasal 28J ayat (2) menegaskan:</p>
+            <p><em>"Dalam menjalankan hak dan kebebasannya, setiap orang wajib tunduk kepada pembatasan yang ditetapkan dengan undang-undang dengan maksud semata-mata untuk menjamin pengakuan serta penghormatan atas hak dan kebebasan orang lain dan untuk memenuhi tuntutan yang adil sesuai dengan pertimbangan moral, nilai-nilai agama, keamanan, dan ketertiban umum dalam suatu masyarakat demokratis."</em></p>
+            <p>Artinya, pembatasan HAM harus:</p>
+            <ul>
+              <li>Ditetapkan <strong>dengan undang-undang</strong> (bukan keputusan sepihak).</li>
+              <li><strong>Proporsional</strong> — tidak berlebihan.</li>
+              <li>Bertujuan melindungi hak orang lain dan ketertiban umum.</li>
+            </ul>
+          </div>
+
+          <div class="materi-section">
+            <div class="materi-section__title">UU ITE dan Restorative Justice</div>
+            <p><strong>UU ITE (Undang-Undang Informasi dan Transaksi Elektronik)</strong> mengatur tindak pidana di ruang digital, termasuk ujaran kebencian dan pencemaran nama baik. Namun, untuk kasus ringan, dapat ditempuh jalur <strong>restorative justice</strong> — penyelesaian melalui mediasi antara pelaku dan korban, dengan fokus pada pemulihan hubungan, bukan hukuman.</p>
+          </div>
+
+          <div class="callout callout--hukum">
+            <span class="callout-label">Dasar Hukum</span>
+            <ul>
+              <li><strong>UUD 1945 Pasal 28E ayat (3), 28F, dan 28J ayat (2)</strong>.</li>
+              <li><strong>UU ITE</strong> (dengan perubahan terbaru).</li>
+              <li>Peraturan tentang <strong>restorative justice</strong> (Peraturan Kejaksaan dan Peraturan Mahkamah Agung terkait).</li>
+            </ul>
+          </div>
+
+          <div class="callout callout--info">
+            <span class="callout-label">Contoh Kontekstual</span>
+            <ul>
+              <li>Demonstrasi damai dan kritik kebijakan publik.</li>
+              <li>Penyelesaian kasus pencemaran nama baik ringan melalui mediasi (restorative justice).</li>
+              <li>Menghindari ujaran kebencian saat berpendapat di media sosial.</li>
+              <li>Menggunakan hak atas informasi untuk mengawasi kebijakan publik.</li>
+            </ul>
+          </div>
+
+          <div class="kunci">
+            <div class="kunci__label">Poin Kunci untuk SAS</div>
+            <ul>
+              <li>Kebebasan berpendapat dijamin <strong>Pasal 28E ayat (3) dan Pasal 28F</strong>.</li>
+              <li>Batasan HAM diatur <strong>Pasal 28J ayat (2)</strong> — harus dengan UU dan proporsional.</li>
+              <li><strong>Restorative justice</strong> = penyelesaian kasus ringan melalui mediasi dan pemulihan.</li>
+              <li>UU ITE mengatur tindak pidana digital, termasuk ujaran kebencian.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </article>
+
+    <div class="empty" id="emptyState" style="display:none">
+      Tidak ada topik yang cocok dengan pencarian Anda.
+    </div>
+
+  </main>
+</div>
+
+<button class="back-top" id="backTop" title="Kembali ke atas">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
 <footer>
-  Bahan Ajar Pendidikan Pancasila Kelas XI · Disusun berdasarkan kisi-kisi 18 sub-topik · Level C2–C4
+  Bahan Ajar Interaktif Pendidikan Pancasila Kelas XI · Berdasarkan Kisi-Kisi SAS · 18 Sub-Topik · Level C2–C4
 </footer>
 
+<script>
+(function(){
+  'use strict';
+
+  /* ===== THEME TOGGLE ===== */
+  const themeToggle = document.getElementById('themeToggle');
+  const iconMoon = document.getElementById('iconMoon');
+  const iconSun = document.getElementById('iconSun');
+  const htmlEl = document.documentElement;
+
+  const savedTheme = localStorage.getItem('pp-theme');
+  if(savedTheme){
+    htmlEl.setAttribute('data-theme', savedTheme);
+    if(savedTheme === 'dark'){ iconMoon.style.display='none'; iconSun.style.display='block'; }
+  }
+  themeToggle.addEventListener('click', ()=>{
+    const cur = htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    htmlEl.setAttribute('data-theme', cur);
+    localStorage.setItem('pp-theme', cur);
+    iconMoon.style.display = cur === 'dark' ? 'none' : 'block';
+    iconSun.style.display = cur === 'dark' ? 'block' : 'none';
+  });
+
+  /* ===== PROGRESS BAR & BACK TO TOP ===== */
+  const progressFill = document.getElementById('progressFill');
+  const backTop = document.getElementById('backTop');
+  function updateScroll(){
+    const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const p = h > 0 ? (window.scrollY / h) * 100 : 0;
+    progressFill.style.width = p + '%';
+    backTop.classList.toggle('show', window.scrollY > 500);
+  }
+  window.addEventListener('scroll', updateScroll, {passive:true});
+  updateScroll();
+  backTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+
+  /* ===== TOPIC ACCORDION ===== */
+  document.querySelectorAll('.topic__head').forEach(head=>{
+    head.addEventListener('click', ()=>{
+      head.closest('.topic').classList.toggle('open');
+    });
+  });
+
+  /* Open first topic by default */
+  const first = document.querySelector('.topic');
+  if(first) first.classList.add('open');
+
+  /* ===== TOC TOGGLE (mobile) ===== */
+  const tocToggle = document.getElementById('tocToggle');
+  const toc = document.getElementById('toc');
+  tocToggle.addEventListener('click', ()=> toc.classList.toggle('mobile-open'));
+
+  /* Close TOC on link click (mobile) */
+  document.querySelectorAll('.toc__link').forEach(link=>{
+    link.addEventListener('click', ()=>{
+      if(window.innerWidth <= 960) toc.classList.remove('mobile-open');
+    });
+  });
+
+  /* ===== ACTIVE TOC LINK (scroll spy) ===== */
+  const tocLinks = Array.from(document.querySelectorAll('.toc__link'));
+  const topics = Array.from(document.querySelectorAll('.topic'));
+  function updateActiveTOC(){
+    const scrollPos = window.scrollY + 120;
+    let active = null;
+    topics.forEach(t=>{
+      if(t.offsetTop <= scrollPos && t.offsetTop + t.offsetHeight > scrollPos){
+        active = t.id;
+      }
+    });
+    tocLinks.forEach(l=>{
+      l.classList.toggle('active', l.getAttribute('href') === '#' + active);
+    });
+  }
+  window.addEventListener('scroll', updateActiveTOC, {passive:true});
+  updateActiveTOC();
+
+  /* ===== FILTER BY UNIT ===== */
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const unitHeaders = document.querySelectorAll('.unit-header');
+  filterBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      filterBtns.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      topics.forEach(t=>{
+        t.style.display = (f === 'all' || t.dataset.unit === f) ? '' : 'none';
+      });
+      unitHeaders.forEach(h=>{
+        h.style.display = (f === 'all' || h.dataset.unit === f) ? '' : 'none';
+      });
+    });
+  });
+
+  /* ===== SEARCH ===== */
+  const searchInput = document.getElementById('searchInput');
+  const emptyState = document.getElementById('emptyState');
+  searchInput.addEventListener('input', e=>{
+    const q = e.target.value.toLowerCase().trim();
+    let visible = 0;
+    topics.forEach(t=>{
+      const matches = !q || t.textContent.toLowerCase().includes(q);
+      t.style.display = matches ? '' : 'none';
+      if(matches) visible++;
+      if(matches && q) t.classList.add('open'); // auto-open matching
+    });
+    // Show only relevant unit headers
+    unitHeaders.forEach(h=>{
+      const unit = h.dataset.unit;
+      const anyVisible = Array.from(topics).some(t=> t.dataset.unit === unit && t.style.display !== 'none');
+      h.style.display = anyVisible ? '' : 'none';
+    });
+    emptyState.style.display = visible === 0 ? 'block' : 'none';
+    // Reset filter buttons when searching
+    if(q){
+      filterBtns.forEach(b=>b.classList.remove('active'));
+    } else {
+      document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+    }
+  });
+})();
+</script>
 </body>
 </html>
